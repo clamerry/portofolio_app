@@ -24,12 +24,12 @@
 
 <body>
     <!-- Edit Project Page -->
-    <div class="page-wrapper bg-dark p-t-100 p-b-50" style="background: #4f5257;">
+    <div class="page-wrapper bg-dark p-t-100 p-b-50" style="background: #27292e;">
         <div class="wrapper wrapper--w900">
             <div class="card card-6">
                 <div class="card-heading">
                     <h5 class="title" style="font-size: 28px;">Edit Project Mahasiswa
-                        <a class="btn right" href="{{ route('project.index') }}"> Kembali<i class="fas fa-arrow-left"></i></a>
+                        <a class="btn btn--blue btn--radius-2" style="float: right" href="{{ route('project.index') }}"><i class="fas fa-arrow-left"></i></a>
                     </h5>
                 </div>
                 <div class="card-body">
@@ -68,7 +68,7 @@
                             <div class="name">Piagam/Sertifikat</div>
                             <div class="value">
                                 <div class="input-group js-input-file">
-                                    <input class="form-control" style="" type="file" name="image" id="image" required>
+                                    <input class="form-control" style="" type="file" name="image" id="image">
                                     @error('image')
                                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                     @enderror

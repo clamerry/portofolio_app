@@ -1,35 +1,14 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('layouts.mahasiswa.form')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <!-- Font special for pages-->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i"
-        rel="stylesheet">
-
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ asset('lte/plugins/fontawesome-free/css/all.min.css') }}">
-
-    <!-- From Only CSS-->
-    <link href="{{ asset('form/css/main.css') }}" rel="stylesheet" media="all">
-
-    <!-- Title Page-->
-    <title>Edit Prestasi</title>
-</head>
-
-<body>
+@section('form_only')
     <!-- Edit Prestasi Page -->
-    <div class="page-wrapper bg-dark p-t-100 p-b-50" style="background: #4f5257;">
+    <div class="page-wrapper bg-dark p-t-100 p-b-50" style="background: #0F394C;">
         <div class="wrapper wrapper--w900">
             <div class="card card-6">
                 <div class="card-heading">
-                    <h5 class="title" style="font-size: 28px;">Edit Prestasi Mahasiswa
-                        <a class="btn right" href="{{ route('prestasi.index') }}"> Kembali<i class="fas fa-arrow-left"></i></a>
+                    <h5 class="title" style="font-size: 28px; text-align: end">Ubah Prestasi Mahasiswa
+                        <a class="btn btn--white btn--radius-2" style="float: left; text-decoration:none"
+                            href="{{ route('prestasi.index') }}"><i class="fas fa-arrow-left" style="color: #0F394C"> </i> </a>
                     </h5>
                 </div>
                 <div class="card-body">
@@ -54,11 +33,25 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="name">Deskripsi</div>
+                            <div class="name">Penyelenggara</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <textarea name="deskripsi" class="textarea--style-6" placeholder="Deskripsi"required>{{ $prestasi->deskripsi }}</textarea>
-                                    @error('deskripsi')
+                                    <input type="text" name="penyelenggara" class="input--style-6"
+                                        placeholder="Penyelenggara" value="{{ $prestasi->penyelenggara }}"
+                                        required></textarea>
+                                    @error('penyelenggara')
+                                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Periode</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <input type="date" name="periode" class="input--style-6"
+                                        value="{{ $prestasi->periode }}" placeholder="Periode" required></textarea>
+                                    @error('periode')
                                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -68,31 +61,50 @@
                             <div class="name">Piagam/Sertifikat</div>
                             <div class="value">
                                 <div class="input-group js-input-file">
-                                    <input class="form-control" style="" type="file" name="image" id="image" required>
+                                    <input class="form-control" style="" type="file" name="image" id="image">
                                     @error('image')
                                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group" style="padding-top: 1rem">
-                                    <img src="{{ asset('storage/images/' . $prestasi->image) }}" height="200" width="200" alt="" />
+                                    <img src="{{ asset('storage/images/' . $prestasi->image) }}" height="200" width="200"
+                                        alt="" />
                                 </div>
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn--radius-2 btn--blue-2">Update</button>
+                            <button type="submit" class="btn btn--radius-2 btn--blue-2"
+                                onclick="update('{{ $prestasi->id }}')">Update</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+@endsection
 
-    <!-- Jquery JS for Form Only-->
-    <script src="{{ asset('form/vendor/jquery/jquery.min.js') }}"></script>
-
-    <!-- Form Only JS -->
-    <script src="{{ asset('form/js/global.js') }}"></script>
-    </div>
-</body>
-
-</html>
+@section('inlinejs')
+    <script>
+        function update(id) {
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: "{{ route('prestasi.index') }}" + `/${id}`,
+                method: 'POST',
+                dataType: 'json',
+                success: function(response) {
+                    if (response.status === 200) {
+                        window.location.href = "{{ route('prestasi.index') }}";
+                    }.then(function() {
+                        Swal.fire(
+                            'Sukses!',
+                            'Data berhasil diubah',
+                            'success'
+                        )
+                    });
+                }
+            });
+        }
+    </script>
+@endsection

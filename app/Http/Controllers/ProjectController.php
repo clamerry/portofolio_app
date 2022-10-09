@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\File;
 
 class ProjectController extends Controller
 {
@@ -50,7 +52,8 @@ class ProjectController extends Controller
             'mahasiswa_id' => auth()->user()->id,
             'judul' => $request->judul,
             'deskripsi' => $request->deskripsi,
-            'image' => $fileName
+            'image' => $fileName,
+            'status' => 'Menunggu Verifikasi'
         ];
 
         Project::insert($prjData);
@@ -76,8 +79,9 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Project $project)
+    public function edit($id)
     {
+        $project = Project::where('id', $id)->first();
         return view('mahasiswa.project.edit', compact('project'));
     }
 
@@ -88,30 +92,42 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Project $project)
+    public function update(Request $request, $id)
     {
+        $project = Project::where('id', $id)->first();
         $request->validate([
             'judul' => 'required',
             'deskripsi' => 'required',
-            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ]);
 
-        $file = $request->file('image');
-        $fileName = time() . '.' . $file->getClientOriginalExtension();
-        $file->storeAs('public/images', $fileName);
+        if ($request->hasFile('image') && $request->file('image') instanceof UploadedFile) {
+            
+            if (!empty($project->image)) {
+                File::delete("storage/images/{$project->image}");
+            }
+            // $data['image'] = $this->userRepo->saveCoverImage($request->file('image'));
+            
+            //upload image to storage
+            $file = $request->file('image');
+            $fileName = time() . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('public/images', $fileName);
+
+            //upload image to DB
+           $project->update(['image' => $fileName,]);
+
+        }
 
         $prjData = [
             'mahasiswa_id' => auth()->user()->id,
             'judul' => $request->judul,
             'deskripsi' => $request->deskripsi,
-            'image' => $fileName
+            'status' => 'Menunggu Verifikasi'
         ];
 
-        Project::where('id', $project->id)
-            ->update($prjData);
+        $project->update($prjData);
 
         return redirect()->route('project.index')
-            ->with('success', 'Project has been updated successfully.');
+            ->withSuccess('Project has been updated successfully.');
     }
 
     /**
@@ -120,10 +136,20 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Project $project)
+    public function destroy($id)
     {
-        Project::destroy($project->id);
-        return redirect()->route('project.index')
-            ->with('success', 'Project has been deleted successfully');
+        $delete = Project::where('id', $id)->delete();
+
+        if ($delete == 1) {
+            $success = true;
+            $message = "Data berhasil dihapus";
+        } else {
+            $success = true;
+            $message = "Data tidak ditemukan";
+        }
+        return response()->json([
+            'success' => $success,
+            'message' => $message,
+        ]);
     }
 }

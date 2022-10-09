@@ -19,17 +19,17 @@
     <link href="{{ asset('form/css/main.css') }}" rel="stylesheet" media="all">
 
     <!-- Title Page-->
-    <title>Tambah Project</title>
+    {{-- <title>Tambah Project</title> --}}
 </head>
 
 <body>
     <!-- Create Project Page -->
-    <div class="page-wrapper bg-dark p-t-100 p-b-50" style="background: #4f5257;">
+    <div class="page-wrapper bg-dark p-t-100 p-b-50" style="background: #0F394C;">
         <div class="wrapper wrapper--w900">
             <div class="card card-6">
                 <div class="card-heading">
-                    <h5 class="title" style="font-size: 28px;">Tambah Project Mahasiswa
-                        <a class="btn right" href="{{ route('project.index') }}"> Kembali<i class="fas fa-arrow-left"></i></a>
+                    <h5 class="title" style="font-size: 28px; text-align: end">Tambah Project Mahasiswa
+                        <a class="btn btn--white btn--radius-2" style="float: left" href="{{ route('project.index') }}"><i class="fas fa-arrow-left" style="color: #0F394C"></i></a>
                     </h5>
                 </div>
                 <div class="card-body">
@@ -62,7 +62,7 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="name">Piagam/Sertifikat</div>
+                            <div class="name">Image</div>
                             <div class="value">
                                 <div class="input-group js-input-file">
                                     <input class="form-control" style="" type="file" name="image" id="image" required>
@@ -70,7 +70,7 @@
                                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="label--desc">Upload your Certificate. Max file size 50 MB</div>
+                                <div class="label--desc">Max file size 50 MB</div>
                             </div>
                         </div>
                         <div class="card-footer">

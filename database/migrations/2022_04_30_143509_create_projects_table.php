@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('judul');
             $table->text('deskripsi');
             $table->string('image');
+            $table->string('status');
             $table->softDeletes(); //agar ketika menghapus data, tidak langsung hilang
         });
     }

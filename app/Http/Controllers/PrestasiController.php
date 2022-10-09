@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Prestasi;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\File;
 
 class PrestasiController extends Controller
 {
@@ -39,7 +41,8 @@ class PrestasiController extends Controller
         //
         $request->validate([
             'judul' => 'required',
-            'deskripsi' => 'required',
+            'penyelenggara' => 'required',
+            'periode' => 'required',
             'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ]);
 
@@ -50,14 +53,16 @@ class PrestasiController extends Controller
         $prsData = [
             'mahasiswa_id' => auth()->user()->id,
             'judul' => $request->judul,
-            'deskripsi' => $request->deskripsi,
-            'image' => $fileName
+            'penyelenggara' => $request->penyelenggara,
+            'periode' => $request->periode,
+            'image' => $fileName,
+            'status' => 'Menunggu Verifikasi'
         ];
 
         Prestasi::insert($prsData);
 
-        return redirect()->route('prestasi.index')
-            ->with('success', 'Prestasi has been created successfully.');
+        return redirect()->route('prestasi.index')->withSuccess('Prestasi berhasil disimpan.');
+        //return response()->json(['status' => true, 'message' => 'lol', 'data' => $request]);
     }
 
     /**
@@ -77,9 +82,9 @@ class PrestasiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Prestasi $prestasi)
+    public function edit($id)
     {
-        //
+        $prestasi = Prestasi::where('id', $id)->first();
         return view('mahasiswa.prestasi.edit', compact('prestasi'));
     }
 
@@ -90,31 +95,45 @@ class PrestasiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Prestasi $prestasi)
+    public function update(Request $request, $id)
     {
         //
+        $prestasi = Prestasi::where('id', $id)->first();
         $request->validate([
             'judul' => 'required',
-            'deskripsi' => 'required',
-            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'penyelenggara' => 'required',
+            'periode' => 'required',
         ]);
 
-        $file = $request->file('image');
-        $fileName = time() . '.' . $file->getClientOriginalExtension();
-        $file->storeAs('public/images', $fileName);
+        if ($request->hasFile('image') && $request->file('image') instanceof UploadedFile) {
+            
+            if (!empty($prestasi->image)) {
+                File::delete("storage/images/{$prestasi->image}");
+            }
+            // $data['image'] = $this->userRepo->saveCoverImage($request->file('image'));
+            
+            //upload image to storage
+            $file = $request->file('image');
+            $fileName = time() . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('public/images', $fileName);
+
+            //upload image to DB
+           $prestasi->update(['image' => $fileName,]);
+
+        }
 
         $prsData = [
             'mahasiswa_id' => auth()->user()->id,
             'judul' => $request->judul,
-            'deskripsi' => $request->deskripsi,
-            'image' => $fileName
+            'penyelenggara' => $request->penyelenggara,
+            'periode' => $request->periode,
+            'status' => 'Menunggu Verifikasi'
         ];
 
-        Prestasi::where('id', $prestasi->id)
-            ->update($prsData);
+        $prestasi->update($prsData);
 
         return redirect()->route('prestasi.index')
-            ->with('success', 'Prestasi has been updated successfully.');
+            ->withSuccess('Prestasi has been updated successfully.');
     }
 
     /**
@@ -123,11 +142,20 @@ class PrestasiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Prestasi $prestasi)
+    public function destroy($id)
     {
-        //
-        Prestasi::destroy($prestasi->id);
-        return redirect()->route('prestasi.index')
-            ->with('success', 'prestasi has been deleted successfully');
+        $delete = Prestasi::where('id', $id)->delete();
+
+        if ($delete == 1) {
+            $success = true;
+            $message = "Data berhasil dihapus";
+        } else {
+            $success = true;
+            $message = "Data tidak ditemukan";
+        }
+        return response()->json([
+            'success' => $success,
+            'message' => $message,
+        ]);
     }
 }

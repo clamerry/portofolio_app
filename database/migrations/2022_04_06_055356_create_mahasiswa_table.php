@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('nim');
             $table->string('fakultas');
             $table->string('prodi');
+            $table->string('image')->nullable();
+            $table->softDeletes();
         });
     }
 

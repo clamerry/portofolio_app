@@ -1,10 +1,20 @@
-<title>Prestasi Mahasiswa</title>
-
-<!-- Datatables, SweetAlert -->
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" />
-<link rel="stylesheet" href="sweetalert2.min.css">
+@section('extra-css')
+    <!-- Datatables, SweetAlert -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" />
+    <link rel="stylesheet" href="{{ asset('lte/plugins/sweetalert2/sweetalert2.min.css') }}">
+@endsection
 
 @extends('layouts.auth.app')
+
+@section('flashMessage')
+    @if (Session::has('success'))
+        <script>
+            swal.fire("Sukses!", "{{ Session::get('success') }}", "success");
+        </script>
+    @endif
+@endsection
 
 @section('content')
     @csrf
@@ -14,8 +24,11 @@
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="col-sm-6">
-                        <h4 class="m-0">Kelola Prestasi</h4>
+                    <div class="col-sm-12">
+                        <a class="btn btn-primary" style="float: left; background-color: #49B5E7 !important;
+                        border-color: transparent;" href="/mahasiswa"><i class="fas fa-arrow-left"></i></a>
+                        <h4 class="mt-1" style="float: right; color: #0F394C;">Kelola Prestasi
+                        </h4>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -26,15 +39,15 @@
         <section class="content">
             <div class="container-fluid">
 
-                <body class="bg-light">
+                <div class="bg-light">
                     <div class="container">
                         <div class="row my-5">
                             <div class="col-lg-12">
                                 <div class="card shadow">
-                                    <div class="card-header bg-danger d-flex justify-content-between align-items-center justify-content-md-end"
-                                        style="margin-top: -2rem">
+                                    <div class="card-header d-flex justify-content-between align-items-center justify-content-md-end"
+                                        style="margin-top: -2rem; background: #49B5E7">
                                         <a class="btn btn-light" href="{{ route('prestasi.create') }}"><i
-                                                class="bi-plus-circle me-2"></i>Add New
+                                                class="bi-plus-circle me-2"></i>Tambah
                                             Prestasi</a>
                                     </div>
                                     <div class="card-body" id="show_all_prestasi">
@@ -44,38 +57,39 @@
                                                 <tr>
                                                     <th>#</th>
                                                     <th>Judul</th>
-                                                    <th>Deskripsi</th>
+                                                    <th>Penyelenggara</th>
+                                                    <th>Periode</th>
                                                     <th>Image</th>
+                                                    <th>Status</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @foreach ($prestasi as $prs)
                                                     <tr>
-                                                        <td>{{ $loop->iteration }}</td>
-                                                        <td>{{ $prs->judul }}</td>
-                                                        <td><button type="button" class="btn btn-primary"
-                                                                data-toggle="modal"
-                                                                data-target="#view_deskripsi{{ $prs->id }}">
-                                                                View Deskripsi
-                                                            </button></td>
-                                                        <td><button type="button" class="btn btn-primary"
-                                                                data-toggle="modal"
+                                                        <td style="vertical-align: middle">{{ $loop->iteration }}</td>
+                                                        <td style="vertical-align: middle">{{ $prs->judul }}</td>
+                                                        <td style="vertical-align: middle">{{ $prs->penyelenggara }}</td>
+                                                        <td style="vertical-align: middle">{{ $prs->periode }}</td>
+
+                                                        <td style="vertical-align: middle"><button type="button"
+                                                                class="btn btn-outline-primary" data-toggle="modal"
                                                                 data-target="#view_image{{ $prs->id }}">
-                                                                View Image
+                                                                Show
                                                             </button>
                                                         </td>
-                                                        <td>
-                                                            <form action="{{ route('prestasi.destroy', $prs->id) }}"
-                                                                method="POST">
-                                                                <a class="text-success mx-1 editIcon"
-                                                                    href="{{ route('prestasi.edit', $prs->id) }}">
-                                                                    <i class="bi-pencil-square h4"></i></a>
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit" class="text-danger mx-1 deleteIcon">
-                                                                    <i class="bi-trash h4"></i></a>
-                                                            </form>
+                                                        <td style="vertical-align: middle">{{ $prs->status }}</td>
+
+                                                        <td style="vertical-align: middle">
+                                                            <a style="background:transparent; text-decoration: none; vertical-align: middle"
+                                                                href="{{ route('prestasi.edit', $prs->id) }}">
+                                                                <i class="nav-icon fas fa-edit fa-lg"
+                                                                    style="color: #1c8c53"></i></a>
+                                                            <a style="background:transparent; text-decoration: none; vertical-align: middle"
+                                                                href="#"
+                                                                onclick="deleteConfirmation('{{ $prs->id }}')">
+                                                                <i class="nav-icon far fa-trash-alt fa-lg"
+                                                                    style="color: #E11400"></i></a>
                                                         </td>
                                                     </tr>
                                                 @endforeach
@@ -87,45 +101,20 @@
                         </div>
                     </div>
 
-
                     @foreach ($prestasi as $prs)
-                        <!-- Modal View Deskripsi -->
-                        <div class="modal fade" id="view_deskripsi{{ $prs->id }}">
-                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h4 class="modal-title">Description</h4>
-                                        <button type="button" class="close" data-dismiss="modal"
-                                            aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>{{ $prs->deskripsi }}</p>
-                                    </div>
-                                    <div class="modal-footer justify-content-between">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-                                <!-- /.modal-content -->
-                            </div>
-                            <!-- /.modal-dialog -->
-                        </div>
-                        <!-- /.modal -->
-
                         <!-- Modal View Image -->
                         <div class="modal fade" id="view_image{{ $prs->id }}">
                             <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h4 class="modal-title">Description</h4>
+                                        <h4 class="modal-title"></h4>
                                         <button type="button" class="close" data-dismiss="modal"
                                             aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <img src="{{ asset('storage/images/' . $prs->image) }}">
+                                        <img src="{{ asset('storage/images/' . $prs->image) }}" style="width: 100%">
                                     </div>
                                     <div class="modal-footer justify-content-between">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -137,20 +126,70 @@
                         </div>
                         <!-- /.modal -->
                     @endforeach
-
-                    <!-- Datatables, SweetAlert -->
-                    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-                    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-                    <script src="sweetalert2.all.min.js"></script>
-                    <script>
-                        $(document).ready(function() {
-                            $('#tabel_prestasi').DataTable();
-                        });
-                    </script>
-                </body>
+                </div>
             </div><!-- /.container-fluid -->
         </section>
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
+@endsection
+
+@section('extra-package')
+    <!-- Datatables, SweetAlert -->
+    {{-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> --}}
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+    <script src="{{ asset('lte/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+@endsection
+
+@section('inlinejs')
+    <script>
+        $(document).ready(function() {
+            $('#tabel_prestasi').DataTable();
+        });
+
+        function deleteConfirmation(id) {
+            swal.fire({
+                title: 'Anda yakin mau menghapus data ini?',
+                icon: 'warning',
+                showCancelButton: false,
+                cancelButtonColor: '#d33',
+                showDenyButton: true,
+                denyButtonText: 'Batal',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Hapus'
+            }).then(function(e) {
+
+                if (e.value === true) {
+                    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        type: 'DELETE',
+                        url: "{{ route('prestasi.index') }}" + `/${id}`,
+                        dataType: 'JSON',
+                        success: function(results) {
+                            if (results.success === true) {
+                                swal.fire("Sukses!", results.message, "success");
+                                // refresh page after 1 seconds
+                                setTimeout(function() {
+                                    location.reload();
+                                }, 1000);
+                            } else {
+                                swal.fire("Gagal!", results.message, "error");
+                            }
+                        }
+                    });
+
+                } else {
+                    e.dismiss;
+                }
+
+            }, function(dismiss) {
+                return false;
+            })
+        }
+    </script>
 @endsection

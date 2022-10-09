@@ -17,8 +17,10 @@ return new class extends Migration
             $table->id();
             $table->foreignID('mahasiswa_id');
             $table->string('judul');
-            $table->text('deskripsi');
+            $table->string('penyelenggara');
+            $table->date('periode');
             $table->string('image');
+            $table->string('status');
             $table->softDeletes(); //agar ketika menghapus data, tidak langsung hilang
             
         });

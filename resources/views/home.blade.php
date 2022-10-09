@@ -13,7 +13,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Favicons -->
-    <link href="{{ asset('landing_page/img/favicon.png') }}" rel="icon">
+    <link href="{{ asset('/img/logo_undip.png') }}" rel="icon">
     <link href="{{ asset('landing_page/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
@@ -38,8 +38,7 @@
     <header id="header" class="fixed-top">
         <div class="container d-flex align-items-center justify-content-between">
 
-            <a href="index.html" class="logo"><img src="landing_page/ssets/img/logo.png" alt=""
-                    class="img-fluid"></a>
+            <a href="" class="logo"><img src="img/logo_undip.png" alt="" class="img-fluid"></a>
             <!-- Uncomment below if you prefer to use text as a logo -->
             <!-- <h1 class="logo"><a href="index.html">Butterfly</a></h1> -->
 
@@ -69,11 +68,11 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
-                    <h1>Creating websites that make you stop & stare</h1>
-                    <h2>Accusantium quam, aliquam ultricies eget tempor id, aliquam eget nibh et. Maecen aliquam, risus
-                        at semper. Proin iaculis purus consequat sem cure digni ssim. Donec porttitora entum.</h2>
-                    <div><a href="#about" class="btn-get-started scrollto">Get Started</a></div>
+                <div class="col-lg-8 pt-4 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
+                    <h1>Aplikasi Portofolio Mahasiswa Universitas Diponegoro</h1>
+                    {{-- <h2>Accusantium quam, aliquam ultricies eget tempor id, aliquam eget nibh et. Maecen aliquam, risus
+                        at semper. Proin iaculis purus consequat sem cure digni ssim. Donec porttitora entum.</h2> --}}
+                    <div><a href="#about" class="btn-get-started scrollto">About</a></div>
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2 hero-img">
                     <img src="assets/img/hero-img.png" class="img-fluid" alt="">
@@ -92,35 +91,47 @@
                 <div class="row">
                     <div
                         class="col-xl-5 col-lg-6 d-flex justify-content-center video-box align-items-stretch position-relative">
-                        <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox play-btn mb-4"></a>
+                        <a href="https://www.youtube.com/watch?v=9otu2wkplq0&ab_channel=UndipTVOfficial" class="glightbox play-btn mb-4"></a>
                     </div>
 
                     <div
                         class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
-                        <h3>Enim quis est voluptatibus aliquid consequatur fugiat</h3>
-                        <p>Esse voluptas cumque vel exercitationem. Reiciendis est hic accusamus. Non ipsam et sed
-                            minima temporibus laudantium. Soluta voluptate sed facere corporis dolores excepturi. Libero
-                            laboriosam sint et id nulla tenetur. Suscipit aut voluptate.</p>
+                        <h3>Aplikasi Portofolio Mahasiswa</h3>
+                        <p style="text-align: justify;">Merupakan aplikasi bagi mahasiswa Universitas Diponegoro membuat
+                            portofolio.
+                            Portofolio mahasiswa dapat terdiri dari:
+                        </p>
 
                         <div class="icon-box">
-                            <div class="icon"><i class="bx bx-fingerprint"></i></div>
-                            <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-                            <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias
-                                excepturi sint occaecati cupiditate non provident</p>
+                            <div class="icon"><i class="bx bx-trophy"></i></div>
+                            <h4 class="title"><a href="">Prestasi</a></h4>
+                            <p class="description" style="text-align: justify;">Merupakan prestasi/penghargaan dalam
+                                bidang akademik dan non-akademik
+                                yang diperoleh secara individu maupun kelompok selama masih tercatat aktif sebagai
+                                mahasiswa.</p>
                         </div>
 
                         <div class="icon-box">
-                            <div class="icon"><i class="bx bx-gift"></i></div>
-                            <h4 class="title"><a href="">Nemo Enim</a></h4>
-                            <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui
-                                blanditiis praesentium voluptatum deleniti atque</p>
+                            <div class="icon"><i class="bx bx-task"></i></div>
+                            <h4 class="title"><a href="">Project</a></h4>
+                            <p class="description" style="text-align: justify;">Merupakan suatu produk, layanan, atau hasil dari usaha mahasiswa yang
+                                sesuai dengan kemampuan dan minat mahasiswa berdasarkan program studi.</p>
                         </div>
 
                         <div class="icon-box">
-                            <div class="icon"><i class="bx bx-atom"></i></div>
-                            <h4 class="title"><a href="">Dine Pad</a></h4>
-                            <p class="description">Explicabo est voluptatum asperiores consequatur magnam. Et
-                                veritatis odit. Sunt aut deserunt minus aut eligendi omnis</p>
+                            <div class="icon"><i class="bx bx-news"></i></div>
+                            <h4 class="title"><a href="">Jurnal</a></h4>
+                            <p class="description" style="text-align: justify;">Merupakan hasil penelitian mahasiswa dalam
+                                bidang tertentu yang telah dipublikasikan oleh instansi, badan organisasi profesi maupun
+                                lembaga keilmuan.</p>
+                        </div>
+
+                        <div class="icon-box">
+                            <div class="icon"><i class="bx bx-calendar"></i></div>
+                            <h4 class="title"><a href="">Kegiatan</a></h4>
+                            <p class="description" style="text-align: justify;">Kegiatan yang diikuti mahasiswa selama masa perkuliahan seperti
+                                organisasi, program pertukaran pelajar, program sukarelawan, program magang, dan Unit
+                                Kegiatan Mahasiswa</p>
                         </div>
 
                     </div>
@@ -130,7 +141,7 @@
         </section><!-- End About Section -->
 
         <!-- ======= Counts Section ======= -->
-        <section id="counts" class="counts">
+        {{-- <section id="counts" class="counts">
             <div class="container">
 
                 <div class="text-center title">
@@ -167,10 +178,10 @@
                 </div>
 
             </div>
-        </section><!-- End Counts Section -->
+        </section><!-- End Counts Section --> --}}
 
         <!-- ======= Clients Section ======= -->
-        <section id="clients" class="clients">
+        {{-- <section id="clients" class="clients">
             <div class="container">
 
                 <div class="row no-gutters clients-wrap clearfix wow fadeInUp">
@@ -226,10 +237,10 @@
                 </div>
 
             </div>
-        </section><!-- End Clients Section -->
+        </section><!-- End Clients Section --> --}}
 
         <!-- ======= Services Section ======= -->
-        <section id="services" class="services section-bg">
+        {{-- <section id="services" class="services section-bg">
             <div class="container">
 
                 <div class="section-title">
@@ -295,10 +306,10 @@
                 </div>
 
             </div>
-        </section><!-- End Services Section -->
+        </section><!-- End Services Section --> --}}
 
         <!-- ======= Portfolio Section ======= -->
-        <section id="portfolio" class="portfolio">
+        {{-- <section id="portfolio" class="portfolio">
             <div class="container">
 
                 <div class="section-title">
@@ -468,10 +479,10 @@
                 </div>
 
             </div>
-        </section><!-- End Portfolio Section -->
+        </section><!-- End Portfolio Section --> --}}
 
         <!-- ======= Testimonials Section ======= -->
-        <section id="testimonials" class="testimonials">
+        {{-- <section id="testimonials" class="testimonials">
             <div class="container position-relative">
 
                 <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
@@ -562,10 +573,10 @@
                 </div>
 
             </div>
-        </section><!-- End Testimonials Section -->
+        </section><!-- End Testimonials Section --> --}}
 
         <!-- ======= Team Section ======= -->
-        <section id="team" class="team section-bg">
+        {{-- <section id="team" class="team section-bg">
             <div class="container">
 
                 <div class="section-title">
@@ -652,10 +663,10 @@
                 </div>
 
             </div>
-        </section><!-- End Team Section -->
+        </section><!-- End Team Section --> --}}
 
         <!-- ======= Gallery Section ======= -->
-        <section id="gallery" class="gallery">
+        {{-- <section id="gallery" class="gallery">
             <div class="container">
 
                 <div class="section-title">
@@ -742,10 +753,10 @@
                 </div>
 
             </div>
-        </section><!-- End Gallery Section -->
+        </section><!-- End Gallery Section --> --}}
 
         <!-- ======= Contact Section ======= -->
-        <section id="contact" class="contact">
+        {{-- <section id="contact" class="contact">
             <div class="container">
 
                 <div class="section-title">
@@ -820,14 +831,14 @@
                 </div>
 
             </div>
-        </section><!-- End Contact Section -->
+        </section><!-- End Contact Section --> --}}
 
     </main><!-- End #main -->
 
     <!-- ======= Footer ======= -->
     <footer id="footer">
 
-        <div class="footer-newsletter">
+        {{-- <div class="footer-newsletter">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
@@ -839,9 +850,9 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
-        <div class="footer-top">
+        {{-- <div class="footer-top">
             <div class="container">
                 <div class="row">
 
@@ -892,18 +903,18 @@
 
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <div class="container py-4">
             <div class="copyright">
-                &copy; Copyright <strong><span>Butterfly</span></strong>. All Rights Reserved
+                &copy; Copyright <strong><span>Clamerry</span></strong>.
             </div>
             <div class="credits">
                 <!-- All the links in the footer should remain intact. -->
                 <!-- You can delete the links only if you purchased the pro version. -->
                 <!-- Licensing information: https://bootstrapmade.com/license/ -->
                 <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/butterfly-free-bootstrap-theme/ -->
-                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                {{-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> --}}
             </div>
         </div>
     </footer><!-- End Footer -->

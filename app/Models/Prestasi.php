@@ -17,7 +17,7 @@ class Prestasi extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'judul', 'deskripsi', 'image'
+        'judul', 'penyelenggara', 'periode', 'image', 'status'
       ];
 
     

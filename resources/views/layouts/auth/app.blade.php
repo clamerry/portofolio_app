@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     {{-- <title>{{ config('app.name', 'Laravel') }}</title> <!-- Change app name --> --}}
-    <title>Dashboard</title>
+    <title>Portofolio App</title>
 
     <!-- Google Fonts -->
     <link
@@ -43,9 +43,6 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('lte/dist/css/adminlte.min.css') }}">
 
-    <!-- Datatables -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" />
-
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -57,9 +54,13 @@
     <link rel='stylesheet'
         href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css' />
 
+    @yield('extra-css')
+
+    @yield('inline-css')
+
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed mt-0">
     <div class="wrapper">
         <!-- Navbar -->
         @include('layouts.auth.navbar')
@@ -70,15 +71,13 @@
         <section class="content">
             <div class="container-fluid">
                 @yield('content')
-
             </div><!-- /.container-fluid -->
         </section>
 
         <footer class="main-footer">
-            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-            All rights reserved.
+            <strong>&copy; Clamerry.</strong>
             <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 3.2.0-rc
+                {{-- <b>Version</b> 3.2.0-rc --}}
             </div>
         </footer>
 
@@ -133,18 +132,8 @@
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="{{ asset('lte/dist/js/pages/dashboard.js') }}"></script>
 
-    <!-- Datatables, SweetAlert -->
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <!-- AdminLTE App -->
     <script src="{{ asset('lte/dist/js/adminlte.js') }}"></script>
-
-    <!-- Form only -->
-    {{-- <script src="{{ asset('form/vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('form/js/global.js') }}"></script> --}}
 
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -158,14 +147,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
         integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous">
     </script>
+
     <!-- JQuery -->
     {{-- <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script> --}}
-
-
-
-
-
-
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    @yield('extra-package')
+    @yield('inlinejs')
+    @yield('flashMessage')
 </body>
+
 
 </html>

@@ -25,6 +25,7 @@ class RedirectIfAuthenticated
             return redirect('/mahasiswa');
         }
         if (Auth::guard($guard)->check()) {
+            // dd(Auth::user());
             return redirect('/home');
         }
 
