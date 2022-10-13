@@ -62,7 +62,7 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="name">Image</div>
+                            <div class="name">Foto</div>
                             <div class="value">
                                 <div class="input-group js-input-file">
                                     <input class="form-control" style="" type="file" name="image" id="image" required>

@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Jurnal;
 use App\Models\Project;
 use App\Models\Kegiatan;
 use App\Models\Prestasi;
 use App\Models\Mahasiswa;
+use App\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
 
 class DashboardAdminController extends Controller

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Jurnal;
 use App\Models\Kegiatan;
@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use function GuzzleHttp\Promise\all;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
 
 class MahasiswaController extends Controller
 {
@@ -36,8 +38,8 @@ class MahasiswaController extends Controller
     public function create(Request $request)
     {
         $fakultas = $this->listFakultas(); //this itu mengacu kepada class.
-        
-        if($request->ajax()) {
+
+        if ($request->ajax()) {
             $prodi = $this->listProdi();
             return response()->json([
                 'status' => 200,
@@ -93,21 +95,21 @@ class MahasiswaController extends Controller
             ->get();
 
         $prestasi = Prestasi::where('mahasiswa_id', $id)
-            ->where('status', '=', 'Telah diverifikasi')
+            ->where('status', '!=', 'Ditolak')
             ->get();
         //$prestasi = [];
 
         // dd($prestasi);
         $project = Project::where('mahasiswa_id', $id)
-            ->where('status', '=', 'Telah diverifikasi')
+            ->where('status', '!=', 'Ditolak')
             ->get();
 
         $jurnal = Jurnal::where('mahasiswa_id', $id)
-            ->where('status', '=', 'Telah diverifikasi')
+            ->where('status', '!=', 'Ditolak')
             ->get();
 
         $kegiatan = Kegiatan::where('mahasiswa_id', $id)
-            ->where('status', '=', 'Telah diverifikasi')
+            ->where('status', '!=', 'Ditolak')
             ->get();
 
         return view('admin.kelola_mhs.show', compact('mahasiswa', 'prestasi', 'project', 'jurnal', 'kegiatan'));
@@ -123,8 +125,8 @@ class MahasiswaController extends Controller
     {
         $fakultas = $this->listFakultas(); //this itu mengacu kepada class.
         $prodi = $this->listProdi();
-        
-        if($request->ajax()) {
+
+        if ($request->ajax()) {
             $prodi = $this->listProdi();
             return response()->json([
                 'status' => 200,

@@ -39,8 +39,8 @@
                 @foreach ($mahasiswa as $mhs)
                     <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center"
                         style="align-items: center">
-                        <img src="{{ $mhs->image ? asset('storage/images/'. $mhs->image) : asset('storage/images/blank.png')}}" alt="..."
-                                        class="rounded-circle" width="150">
+                        <img src="{{ $mhs->image ? asset('storage/images/' . $mhs->image) : asset('storage/images/blank.png') }}"
+                            alt="..." class="rounded-circle" width="150">
                     </div>
                     <div class="col-lg-6 order-1 order-lg-2 hero-img">
                         <div class="row" style="margin-bottom: 5px">
@@ -104,6 +104,10 @@
                                     <h4 class="title"><a href="">{{ $prs->judul }}</a></h4>
                                     <p class="description" style="margin-bottom: 0rem">{{ $prs->penyelenggara }}</p>
                                     <p class="description" style="margin-bottom: 0rem">{{ $prs->periode }}</p>
+                                    @if ($prs->status == 'Menunggu Verifikasi')
+                                        <p>Belum diverifikasi</p>
+                                    @elseif ($prs->status == 'Telah diverifikasi')
+                                    @endif
                                 </div>
                             @endforeach
                         </div>
@@ -116,6 +120,10 @@
                                     <div class="icon">{{ $loop->iteration }}</div>
                                     <h4 class="title"><a href="">{{ $prj->judul }}</a></h4>
                                     <p class="description" style="margin-bottom: 0rem">{{ $prj->deskripsi }}</p>
+                                    @if ($prj->status == 'Menunggu Verifikasi')
+                                        <p>Belum diverifikasi</p>
+                                    @elseif ($prj->status == 'Telah diverifikasi')
+                                    @endif
                                 </div>
                             @endforeach
                         </div>
@@ -130,6 +138,10 @@
                                     <div class="icon">{{ $loop->iteration }}</div>
                                     <h4 class="title"><a href="">{{ $jrnl->judul }}</a></h4>
                                     <p class="description" style="margin-bottom: 0rem">{{ $jrnl->jurnal }}</p>
+                                    @if ($jrnl->status == 'Menunggu Verifikasi')
+                                        <p>Belum diverifikasi</p>
+                                    @elseif ($jrnl->status == 'Telah diverifikasi')
+                                    @endif
                                 </div>
                             @endforeach
                         </div>
@@ -144,6 +156,10 @@
                                     <h4 class="title"><a href="">{{ $kgt->jabatan }}</a></h4>
                                     <p class="description" style="margin-bottom: 0rem">{{ $kgt->kegiatan }}</p>
                                     <p class="description" style="margin-bottom: 0rem">{{ $kgt->periode }}</p>
+                                    @if ($kgt->status == 'Menunggu Verifikasi')
+                                        <p>Belum diverifikasi</p>
+                                    @elseif ($kgt->status == 'Telah diverifikasi')
+                                    @endif
                                 </div>
                             @endforeach
                         </div>
@@ -264,7 +280,7 @@
     <footer id="footer">
         <div class="container py-4">
             <div class="copyright">
-                &copy; Copyright <strong><span>Clarmerry</span></strong>
+                &copy; Copyright <strong><span>Clamerry</span></strong>
             </div>
             <div class="credits">
                 {{-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> --}}

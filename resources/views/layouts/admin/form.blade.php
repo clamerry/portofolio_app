@@ -4,9 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link href="{{ asset('/img/logo_undip.png') }}" rel="icon">
 
     <!-- Font special for pages-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i"
@@ -17,6 +19,7 @@
 
     <!-- From Only CSS-->
     <link href="{{ asset('form/css/main.css') }}" rel="stylesheet" media="all">
+   
 
     <title>Portofolio App</title>
 

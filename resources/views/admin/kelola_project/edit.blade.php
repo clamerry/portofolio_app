@@ -1,14 +1,15 @@
-@extends('layouts.mahasiswa.form')
+@extends('layouts.admin.form')
 
 @section('form_only')
-    <!-- Edit Jurnal Page -->
+    <!-- Edit Project Page -->
     <div class="page-wrapper bg-dark p-t-100 p-b-50" style="background: #0F394C;">
         <div class="wrapper wrapper--w900">
             <div class="card card-6">
                 <div class="card-heading">
-                    <h5 class="title" style="font-size: 28px; text-align: end">Ubah Jurnal Mahasiswa
+                    <h5 class="title" style="font-size: 28px; text-align: end">Ubah Project Mahasiswa
                         <a class="btn btn--white btn--radius-2" style="float: left; text-decoration:none"
-                            href="{{ route('jurnal.index') }}"><i class="fas fa-arrow-left" style="color: #0F394C"></i></a>
+                            href="{{ route('index.project') }}"><i class="fas fa-arrow-left" style="color: #0F394C"> </i>
+                        </a>
                     </h5>
                 </div>
                 <div class="card-body">
@@ -18,61 +19,59 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('jurnal.update', $jurnal->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.update.project', $project->id) }}" method="POST"
+                        enctype="multipart/form-data">
                         @method('put')
                         @csrf
+                        <div class="form-row">
+                            <div class="name">Mahasiswa</div>
+                            <div class="input--style-6">
+                                {{ $project->Mahasiswa->nama }} - {{ $project->Mahasiswa->fakultas }} -
+                                {{ $project->Mahasiswa->prodi }}
+                                @error('mahasiswa_id')
+                                    <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
                         <div class="form-row">
                             <div class="name">Judul</div>
                             <div class="value">
                                 <input type="text" name="judul" class="input--style-6" placeholder="Judul"
-                                    value="{{ $jurnal->judul }}" required>
+                                    value="{{ $project->judul }}" required>
                                 @error('judul')
                                     <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="name">Penulis</div>
+                            <div class="name">Deskripsi</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input type="text" name="penulis" class="input--style-6" placeholder="penulis"
-                                        value="{{ $jurnal->penulis }}" required></textarea>
-                                    @error('penulis')
+                                    <textarea name="deskripsi" class="textarea--style-6" placeholder="Deskripsi"required>{{ $project->deskripsi }}</textarea>
+                                    @error('deskripsi')
                                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                     @enderror
                                 </div>
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="name">Nama Jurnal</div>
-                            <div class="value">
-                                <div class="input-group">
-                                    <input type="text" name="jurnal" class="input--style-6"
-                                        value="{{ $jurnal->jurnal }}" placeholder="Nama Jurnal" required></textarea>
-                                    @error('jurnal')
-                                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="name">File</div>
+                            <div class="name">Foto Project</div>
                             <div class="value">
                                 <div class="input-group js-input-file">
-                                    <input class="form-control" style="" type="file" name="file" id="file">
-                                    @error('file')
+                                    <input class="form-control" style="" type="file" name="image" id="image">
+                                    @error('image')
                                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group" style="padding-top: 1rem">
-                                    <embed src="{{ asset('storage/files/' . $jurnal->file) }}" height="200"
+                                    <img src="{{ asset('storage/images/' . $project->image) }}" height="200"
                                         width="200" alt="" />
                                 </div>
                             </div>
                         </div>
                         <div class="card-footer">
                             <button type="submit" class="btn btn--radius-2 btn--blue-2"
-                                onclick="update('{{ $jurnal->id }}')">Ubah</button>
+                                onclick="update('{{ $project->id }}')">Update</button>
                         </div>
                     </form>
                 </div>
@@ -88,12 +87,12 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
-                url: "{{ route('jurnal.index') }}" + `/${id}`,
+                url: "{{ route('project.index') }}" + `/${id}`,
                 method: 'POST',
                 dataType: 'json',
                 success: function(response) {
                     if (response.status === 200) {
-                        window.location.href = "{{ route('jurnal.index') }}";
+                        window.location.href = "{{ route('project.index') }}";
                     }.then(function() {
                         Swal.fire(
                             'Sukses!',

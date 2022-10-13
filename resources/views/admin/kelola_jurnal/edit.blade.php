@@ -1,4 +1,4 @@
-@extends('layouts.mahasiswa.form')
+@extends('layouts.admin.form')
 
 @section('form_only')
     <!-- Edit Jurnal Page -->
@@ -8,7 +8,7 @@
                 <div class="card-heading">
                     <h5 class="title" style="font-size: 28px; text-align: end">Ubah Jurnal Mahasiswa
                         <a class="btn btn--white btn--radius-2" style="float: left; text-decoration:none"
-                            href="{{ route('jurnal.index') }}"><i class="fas fa-arrow-left" style="color: #0F394C"></i></a>
+                            href="{{ route('index.jurnal') }}"><i class="fas fa-arrow-left" style="color: #0F394C"> </i> </a>
                     </h5>
                 </div>
                 <div class="card-body">
@@ -18,9 +18,20 @@
                         </div>
                     @endif
 
-                    <form action="{{ route('jurnal.update', $jurnal->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.update.jurnal', $jurnal->id) }}" method="POST"
+                        enctype="multipart/form-data">
                         @method('put')
                         @csrf
+                        <div class="form-row">
+                            <div class="name">Mahasiswa</div>
+                            <div class="input--style-6">
+                                {{ $jurnal->Mahasiswa->nama }} - {{ $jurnal->Mahasiswa->fakultas }} -
+                                {{ $jurnal->Mahasiswa->prodi }}
+                                @error('mahasiswaid')
+                                    <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
                         <div class="form-row">
                             <div class="name">Judul</div>
                             <div class="value">
@@ -35,8 +46,7 @@
                             <div class="name">Penulis</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input type="text" name="penulis" class="input--style-6" placeholder="penulis"
-                                        value="{{ $jurnal->penulis }}" required></textarea>
+                                    <textarea type="text" name="penulis" class="input--style-6" placeholder="Penulis" value="" required>{{ $jurnal->penulis }}</textarea>
                                     @error('penulis')
                                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                     @enderror
@@ -72,7 +82,7 @@
                         </div>
                         <div class="card-footer">
                             <button type="submit" class="btn btn--radius-2 btn--blue-2"
-                                onclick="update('{{ $jurnal->id }}')">Ubah</button>
+                                onclick="update('{{ $jurnal->id }}')">Update</button>
                         </div>
                     </form>
                 </div>

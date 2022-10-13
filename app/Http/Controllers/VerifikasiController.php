@@ -13,14 +13,14 @@ class VerifikasiController extends Controller
     public function index()
     {
         $prestasi = Prestasi::where('mahasiswa_id', auth()->user()->id)->get()
-            ->where('status', '=', 'Telah diverifikasi');
+            ->where('status', '!=', 'Ditolak');
         // dd($prestasi);
         $project = Project::where('mahasiswa_id', auth()->user()->id)->get()
-            ->where('status', '=', 'Telah diverifikasi');
+            ->where('status', '!=', 'Ditolak');
         $jurnal = Jurnal::where('mahasiswa_id', auth()->user()->id)->get()
-            ->where('status', '=', 'Telah diverifikasi');
+            ->where('status', '!=', 'Ditolak');
         $kegiatan = Kegiatan::where('mahasiswa_id', auth()->user()->id)->get()
-            ->where('status', '=', 'Telah diverifikasi');
+            ->where('status', '!=', 'Ditolak');
         //$jurnal = [];
 
         return view('mahasiswa.portofolio', compact('prestasi', 'project', 'jurnal', 'kegiatan'));

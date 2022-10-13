@@ -1,7 +1,8 @@
-@extends('layouts.mahasiswa.form')
+@extends('layouts.admin.form')
 
 @section('extra-css')
-<link rel="stylesheet" href="{{ asset('lte/plugins/sweetalert2/sweetalert2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('lte/plugins/sweetalert2/sweetalert2.min.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endsection
 
 @section('form_only')
@@ -12,7 +13,7 @@
                 <div class="card-heading">
                     <h5 class="title" style="font-size: 28px; text-align: end">Tambah Jurnal Mahasiswa
                         <a class="btn btn--white btn--radius-2" style="float: left; text-decoration:none"
-                            href="{{ route('jurnal.index') }}"><i class="fas fa-arrow-left" style="color: #0F394C"></i></a>
+                            href="{{ route('index.jurnal') }}"><i class="fas fa-arrow-left" style="color: #0F394C"> </i></a>
                     </h5>
                 </div>
                 <div class="card-body">
@@ -21,8 +22,19 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <form id="create-jurnal-form" action="{{ route('jurnal.store') }}" method="POST" enctype="multipart/form-data">
+                    <form id="create-jurnal-form" action="{{ route('admin.store.jurnal') }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
+                        <div class="form-row">
+                            <div class="name">Mahasiswa</div>
+                            <div class="value">
+                                <select name="mahasiswa_id" id="mahasiswaid" class="input--style-6" required
+                                    style="width: 100%"></select>
+                                @error('mahasiswa_id')
+                                    <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
                         <div class="form-row">
                             <div class="name">Judul</div>
                             <div class="value">
@@ -36,16 +48,16 @@
                             <div class="name">Penulis</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <textarea type="text" name="penulis" class="input--style-6"
-                                        placeholder="Penulis" required></textarea>
+                                    <textarea type="text" name="penulis" class="input--style-6" placeholder="Penulis" required></textarea>
                                     @error('penulis')
                                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                     @enderror
+                                    <div class="label--desc">Nama penulis dipisahkan dengan tanda titik koma (;)</div>
                                 </div>
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="name">Jurnal</div>
+                            <div class="name">Nama Jurnal</div>
                             <div class="value">
                                 <div class="input-group">
                                     <input type="text" name="jurnal" class="input--style-6" placeholder="Jurnal"
@@ -60,12 +72,13 @@
                             <div class="name">File</div>
                             <div class="value">
                                 <div class="input-group js-input-file">
-                                    <input class="form-control" style="" type="file" name="file" id="file" required>
+                                    <input class="form-control" style="" type="file" name="file" id="file"
+                                        required>
                                     @error('file')
                                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="label--desc">Ukuran maksimal 2MB</div>
+                                <div class="label--desc">Ukuran maksimal 20MB</div>
                             </div>
                         </div>
                         <div class="card-footer">
@@ -79,10 +92,42 @@
 @endsection
 
 @section('inlinejs')
-<script src="{{ asset('lte/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
-<script>
-    $(document).ready(function() {
-        $('#tabel_jurnal').DataTable();
-    });
-</script>
+    <script src="{{ asset('lte/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#tabel_jurnal').DataTable();
+        });
+
+        //instansiasi select2js
+        $('#mahasiswaid').select2({
+            placeholder: "Cari Nama Mahasiswa...",
+            minimumInputLength: 2,
+            ajax: {
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') //syarat autentikasi
+                },
+                url: "{{ route('admin.create.prestasi') }}", //url aplikasi
+                type: "GET",
+                dataType: 'json',
+                data: function(params) {
+                    return {
+                        name: $.trim(params.term)
+                        // name itu untuk yang $request->name
+                        // $.trim(params.term)  tiap ngetiknya
+                    };
+                },
+                processResults: function(data) {
+                    return {
+                        results: data.datas
+                        // data pertama itu dari parameter
+                        // data kedua itu dari responde()->json(['data']) -> controller
+                        // data kedua harus bentuknya array ['id' => $id, 'text' => $text]
+                        // <option value="id">text</option>
+                    };
+                },
+                cache: true
+            }
+        });
+    </script>
 @endsection

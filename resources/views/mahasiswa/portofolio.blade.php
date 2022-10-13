@@ -11,7 +11,7 @@
     <title>Verifikasi</title>
 
     <!-- Favicons -->
-    <link href="{{ asset('landing_page/img/favicon.png') }}" rel="icon">
+    <link href="{{ asset('/img/logo_undip.png') }}" rel="icon">
     <link href="{{ asset('landing_page/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
@@ -38,8 +38,8 @@
             <div class="row">
                 <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center"
                     style="align-items: center">
-                    <img src="{{ auth()->user()->image ? asset('storage/images/'.auth()->user()->image) : asset('storage/images/blank.png')}}" alt="..."
-                                        class="rounded-circle" width="150">
+                    <img src="{{ auth()->user()->image ? asset('storage/images/' . auth()->user()->image) : asset('storage/images/blank.png') }}"
+                        alt="..." class="rounded-circle" width="150">
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2 hero-img">
                     <div class="row" style="margin-bottom: 5px">
@@ -92,7 +92,7 @@
         <section id="about" class="about">
             <div class="container">
                 <div class="row">
-                    @if (!empty($prestasi))
+                    @if (count($prestasi) > 0)
                         <div
                             class="col-xl-6 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center px-lg-5">
                             <h3>Prestasi</h3>
@@ -102,11 +102,15 @@
                                     <h4 class="title"><a href="">{{ $prs->judul }}</a></h4>
                                     <p class="description" style="margin-bottom: 0rem">{{ $prs->penyelenggara }}</p>
                                     <p class="description" style="margin-bottom: 0rem">{{ $prs->periode }}</p>
+                                    @if ($prs->status == 'Menunggu Verifikasi')
+                                        <p class="description">(Belum diverifikasi)</p>
+                                    @elseif ($prs->status == 'Telah diverifikasi')
+                                    @endif
                                 </div>
                             @endforeach
                         </div>
                     @endif
-                    @if (!empty($project))
+                    @if (count($project) > 0)
                         <div class="col-xl-6 col-lg-6 icon-boxes d-flex flex-column align-items-stretch px-lg-5">
                             <h3>Project</h3>
                             @foreach ($project as $prj)
@@ -114,27 +118,34 @@
                                     <div class="icon">{{ $loop->iteration }}</div>
                                     <h4 class="title"><a href="">{{ $prj->judul }}</a></h4>
                                     <p class="description" style="margin-bottom: 0rem">{{ $prj->deskripsi }}</p>
+                                    @if ($prj->status == 'Menunggu Verifikasi')
+                                        <p class="description">(Belum diverifikasi)</p>
+                                    @elseif ($prj->status == 'Telah diverifikasi')
+                                    @endif
                                 </div>
                             @endforeach
                         </div>
                     @endif
-                    @if (!empty($jurnal))
-                        <div
-                            class="col-xl-6 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center px-lg-5">
-                            <br><br>
+                    @if (count($jurnal) > 0)
+                        <div class="col-xl-6 col-lg-6 icon-boxes d-flex flex-column align-items-stretch px-lg-5">
                             <h3>Jurnal</h3>
                             @foreach ($jurnal as $jrnl)
                                 <div class="icon-box" style="margin-top:15px;">
                                     <div class="icon">{{ $loop->iteration }}</div>
                                     <h4 class="title"><a href="">{{ $jrnl->judul }}</a></h4>
+                                    <p class="description" style="margin-bottom: 0rem">{{ $jrnl->penulis }}</p>
                                     <p class="description" style="margin-bottom: 0rem">{{ $jrnl->jurnal }}</p>
+                                    @if ($jrnl->status == 'Menunggu Verifikasi')
+                                        <p class="description">(Belum diverifikasi)</p>
+                                    @elseif ($jrnl->status == 'Telah diverifikasi')
+                                    @endif
                                 </div>
                             @endforeach
                         </div>
                     @endif
-                    @if (!empty($kegiatan))
+                    @if (count($kegiatan) > 0)
                         <div class="col-xl-6 col-lg-6 icon-boxes d-flex flex-column align-items-stretch px-lg-5">
-                            <br><br>
+                            {{-- <br><br> --}}
                             <h3>Kegiatan</h3>
                             @foreach ($kegiatan as $kgt)
                                 <div class="icon-box" style="margin-top:15px;">
@@ -142,6 +153,10 @@
                                     <h4 class="title"><a href="">{{ $kgt->jabatan }}</a></h4>
                                     <p class="description" style="margin-bottom: 0rem">{{ $kgt->kegiatan }}</p>
                                     <p class="description" style="margin-bottom: 0rem">{{ $kgt->periode }}</p>
+                                    @if ($kgt->status == 'Menunggu Verifikasi')
+                                        <p class="description">(Belum diverifikasi)</p>
+                                    @elseif ($kgt->status == 'Telah diverifikasi')
+                                    @endif
                                 </div>
                             @endforeach
                         </div>
@@ -260,7 +275,7 @@
     <footer id="footer">
         <div class="container py-4">
             <div class="copyright">
-                &copy; Copyright <strong><span>Clarmerry</span></strong>
+                &copy; Copyright <strong><span>Clamerry</span></strong>
             </div>
             <div class="credits">
                 {{-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> --}}
