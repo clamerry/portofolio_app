@@ -42,7 +42,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex flex-column align-items-center text-center">
-                                    <img src="{{ auth()->user()->image ? asset('storage/images/'.auth()->user()->image) : asset('storage/images/blank.png')}}" alt="..."
+                                    <img src="{{ auth()->user()->image ? asset('storage/images/'.auth()->user()->image) : asset('img/blank.png')}}" alt="..."
                                         class="rounded-circle" width="150">
                                     <div class="mt-3">
                                         <h4>{{ Auth::user()->nama }}</h4>
