@@ -54,11 +54,11 @@
                                         @method('PUT')
                                         <div class="input-group js-input-file justify-content-center">
                                             <input class="form-control" style="display:none" type="file" name="image" id="image" onchange="this.form.submit()">
-                                            <label for="image" class="text-center">
+                                            {{-- <label for="image" class="text-center">
                                                 <span class="btn text-white btn--blue btn-sm" style="border: 0px" >
                                                     Upload Photo
                                                 </button>
-                                            </label>
+                                            </label> --}}
                                         </div>
                                     </form>
                                 </div>
@@ -100,10 +100,10 @@
                             </div>
                             <div class="row; p-2" style="padding-bottom: 1rem !important">
                                 <div class="col-sm-6">
-                                    <button type="button" class="btn text-white btn--blue btn--radius-2 mt-3 btn-sm"
+                                    {{-- <button type="button" class="btn text-white btn--blue btn--radius-2 mt-3 btn-sm"
                                         style="border: 0px; margin-top: 0 !important" data-bs-toggle="modal" data-bs-target="#changePassword">
                                         Change Password
-                                    </button>
+                                    </button> --}}
                                 </div>
                             </div>
                         </div>

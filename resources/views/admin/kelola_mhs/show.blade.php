@@ -8,10 +8,10 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Verifikasi</title>
+    <title>Portofolio App</title>
 
     <!-- Favicons -->
-    <link href="{{ asset('landing_page/img/favicon.png') }}" rel="icon">
+    <link href="{{ asset('/img/logo_undip.png') }}" rel="icon">
     <link href="{{ asset('landing_page/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
