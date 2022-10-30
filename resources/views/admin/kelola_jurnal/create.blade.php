@@ -38,7 +38,7 @@
                         <div class="form-row">
                             <div class="name">Judul</div>
                             <div class="value">
-                                <input type="text" name="judul" class="input--style-6" placeholder="Judul" required>
+                                <input type="text" name="judul" class="input--style-6" placeholder="Judul Penelitian" required>
                                 @error('judul')
                                     <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                 @enderror
@@ -78,11 +78,11 @@
                                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="label--desc">Ukuran maksimal 20MB</div>
+                                <div class="label--desc">Ukuran maksimal 20MB, hanya dalam bentuk PDF</div>
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn--radius-2 btn--blue-2">Submit</button>
+                            <button type="submit" class="btn btn--radius-2 btn--blue-2">Simpan</button>
                         </div>
                     </form>
                 </div>

@@ -9,24 +9,24 @@
                 <span class="brand-text" style="font-size: large; margin-left:10px"> Universitas Diponegoro</span>
             </a>
         @elseif (Auth::guard('mahasiswa')->check())
-        <a class="brand-link" style="text-decoration: none; margin:auto" href="{{ url('/mahasiswa') }}">
-            <img class="brand-image" src="{{ asset('img/logo_undip.png') }}" style="margin-left:5px; margin-right:0px"
-                alt="..." />
-            <span class="brand-text" style="font-size: large; margin-left:10px"> Universitas Diponegoro</span>
-        </a>
+            <a class="brand-link" style="text-decoration: none; margin:auto" href="{{ url('/mahasiswa') }}">
+                <img class="brand-image" src="{{ asset('img/logo_undip.png') }}" style="margin-left:5px; margin-right:0px"
+                    alt="..." />
+                <span class="brand-text" style="font-size: large; margin-left:10px"> Universitas Diponegoro</span>
+            </a>
         @endif
     @endauth
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        {{-- <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="info" style="margin: auto">
                 <a class="d-block" style="text-decoration: none; ">{{ Auth::user()->nama }}</a>
             </div>
-        </div>
+        </div> --}}
 
         <!-- SidebarSearch Form -->
-        <div class="form-inline">
+        {{-- <div class="form-inline">
             <div class="input-group" data-widget="sidebar-search">
                 <input class="form-control form-control-sidebar" type="search" placeholder="Search"
                     aria-label="Search">
@@ -36,7 +36,7 @@
                     </button>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
@@ -45,7 +45,7 @@
                 @auth
                     @if (Auth::guard('admin')->check())
                         <li class="nav-item">
-                            <a href="/kelola_mahasiswa" class="nav-link">
+                            <a href="/kelola_mahasiswa" class="nav-link ">
                                 <!-- Change Link -->
                                 <i class="nav-icon fas fa-folder-open"></i>
                                 <p>
@@ -91,46 +91,34 @@
                         </li>
                     @elseif (Auth::guard('mahasiswa')->check())
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-folder-open"></i>
-                                <p>
-                                    Kelola Portofolio
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
+                            <a href="/prestasi" class="nav-link">
+                                <i class="fas fa-medal nav-icon"></i>
+                                <p>Prestasi</p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="/prestasi" class="nav-link">
-                                        <i class="fas fa-medal nav-icon"></i>
-                                        <p>Prestasi</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/project" class="nav-link">
-                                        <i class="fas fa-clipboard-list nav-icon"></i>
-                                        <p>Project</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/jurnal" class="nav-link">
-                                        <i class="fas fa-book nav-icon"></i>
-                                        <p>Jurnal</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/kegiatan" class="nav-link">
-                                        <i class="fas fa-id-card nav-icon"></i>
-                                        <p>Kegiatan</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/verifikasi" class="nav-link">
-                                        <i class="fas fa-desktop nav-icon"></i>
-                                        <p>Tampilkan Portofolio</p>
-                                    </a>
-                                </li>
-
-                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/project" class="nav-link">
+                                <i class="fas fa-clipboard-list nav-icon"></i>
+                                <p>Project</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/jurnal" class="nav-link">
+                                <i class="fas fa-book nav-icon"></i>
+                                <p>Jurnal</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/kegiatan" class="nav-link">
+                                <i class="fas fa-id-card nav-icon"></i>
+                                <p>Kegiatan</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/verifikasi" class="nav-link">
+                                <i class="fas fa-desktop nav-icon"></i>
+                                <p>Tampilkan Portofolio</p>
+                            </a>
                         </li>
                     @endif
                 @endauth

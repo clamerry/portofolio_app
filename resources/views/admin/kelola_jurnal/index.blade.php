@@ -62,7 +62,7 @@
                                                     <th>Penulis</th>
                                                     <th>Nama Jurnal</th>
                                                     <th>File</th>
-                                                    <th>Action</th>
+                                                    <th>Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -76,7 +76,7 @@
                                                         <td style="vertical-align: middle"><button type="button"
                                                                 class="btn btn-outline-primary" data-toggle="modal"
                                                                 data-target="#view_file{{ $jrnl->id }}">
-                                                                Show
+                                                                Lihat
                                                             </button>
                                                         </td>
                                                         <td style="vertical-align: middle">
@@ -123,7 +123,7 @@
                                         style="height:500%; width: 100%">
                                     {{-- </div> --}}
                                     <div class="modal-footer justify-content-between">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
                                     </div>
                                 </div>
                                 <!-- /.modal-content -->

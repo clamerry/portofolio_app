@@ -8,7 +8,7 @@
                 <div class="card-heading">
                     <h5 class="title" style="font-size: 28px; text-align: end">Ubah Kegiatan Mahasiswa
                         <a class="btn btn--white btn--radius-2" style="float: left; text-decoration:none"
-                            href="{{ route('jurnal.index') }}"><i class="fas fa-arrow-left" style="color: #0F394C"></i></a>
+                            href="{{ route('kegiatan.index') }}"><i class="fas fa-arrow-left" style="color: #0F394C"></i></a>
                     </h5>
                 </div>
                 <div class="card-body">
@@ -62,6 +62,7 @@
                             <div class="value">
                                 <div class="input-group js-input-file">
                                     <input class="form-control" style="" type="file" name="image" id="image">
+                                    <div class="label--desc">Ukuran maksimal 3MB; dapat berupa jpg, png, jpeg, ataupun pdf</div>
                                     @error('image')
                                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                     @enderror

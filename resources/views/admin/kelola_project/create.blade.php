@@ -45,7 +45,7 @@
                         <div class="form-row">
                             <div class="name">Judul</div>
                             <div class="value">
-                                <input type="text" name="judul" class="input--style-6" placeholder="Judul" required>
+                                <input type="text" name="judul" class="input--style-6" placeholder="Judul Project" required>
                                 @error('judul')
                                     <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                 @enderror
@@ -55,7 +55,8 @@
                             <div class="name">Deskripsi</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <textarea class="textarea--style-6" name="deskripsi" class="input--style-6" placeholder="Deskripsi" required></textarea>
+                                    <textarea class="textarea--style-6" name="deskripsi" class="input--style-6" placeholder="Deskripsi singkat mengenai project" required></textarea>
+                                    <div class="label--desc">Dapat disertakan link yang bersangkutan dengan project</div>
                                     @error('deskripsi')
                                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                     @enderror
@@ -72,11 +73,11 @@
                                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="label--desc">Ukuran maksimal 2MB</div>
+                                <div class="label--desc">Ukuran maksimal 3MB; dapat berupa jpg, png, jpeg, ataupun pdf</div>
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn--radius-2 btn--blue-2">Submit</button>
+                            <button type="submit" class="btn btn--radius-2 btn--blue-2">Simpan</button>
                         </div>
                     </form>
                 </div>

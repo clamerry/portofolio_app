@@ -75,7 +75,7 @@
                                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="label--desc">Ukuran maksimal 2MB</div>
+                                <div class="label--desc">Ukuran maksimal 3MB; dapat berupa jpg, png, jpeg, ataupun pdf</div>
                                 <div class="form-group" style="padding-top: 1rem">
                                     <img src="{{ asset('storage/images/' . $kegiatan->image) }}" height="200"
                                         width="200" alt="" />
@@ -84,7 +84,7 @@
                         </div>
                         <div class="card-footer">
                             <button type="submit" class="btn btn--radius-2 btn--blue-2"
-                                onclick="update('{{ $kegiatan->id }}')">Update</button>
+                                onclick="update('{{ $kegiatan->id }}')">Simpan</button>
                         </div>
                     </form>
                 </div>

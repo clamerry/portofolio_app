@@ -138,7 +138,7 @@
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                         type: 'DELETE',
-                        url: "{{ route('index.prestasi') }}" + `/${id}`,
+                        url: "{{ route('kelola_mahasiswa.index') }}" + `/${id}`,
                         dataType: 'JSON',
                         success: function(results) {
                             if (results.success === true) {

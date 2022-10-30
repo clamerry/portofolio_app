@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Portofolio App</title>
+    <title>Aplikasi Portofolio</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -44,8 +44,8 @@
 
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-                    <li><a class="nav-link scrollto" href="#about">About</a></li>
+                    <li><a class="nav-link scrollto active" href="#hero">Beranda</a></li>
+                    <li><a class="nav-link scrollto" href="#about">Info</a></li>
                     {{-- <li><a class="nav-link scrollto" href="#services">Services</a></li>
                     <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
                     <li><a class="nav-link scrollto" href="#team">Team</a></li> --}}
@@ -72,7 +72,7 @@
                     <h1>Aplikasi Portofolio Mahasiswa Universitas Diponegoro</h1>
                     {{-- <h2>Accusantium quam, aliquam ultricies eget tempor id, aliquam eget nibh et. Maecen aliquam, risus
                         at semper. Proin iaculis purus consequat sem cure digni ssim. Donec porttitora entum.</h2> --}}
-                    <div><a href="#about" class="btn-get-started scrollto">About</a></div>
+                    {{-- <div><a href="#about" class="btn-get-started scrollto">About</a></div> --}}
                 </div>
                 <div class="col-lg-6 order-1 order-lg-2 hero-img">
                     <img src="assets/img/hero-img.png" class="img-fluid" alt="">

@@ -25,7 +25,7 @@
                         <div class="form-row">
                             <div class="name">Judul</div>
                             <div class="value">
-                                <input type="text" name="judul" class="input--style-6" placeholder="Judul"
+                                <input type="text" name="judul" class="input--style-6" placeholder="Judul Prestasi"
                                     value="{{ $prestasi->judul }}" required>
                                 @error('judul')
                                     <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
@@ -46,7 +46,7 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="name">Periode</div>
+                            <div class="name">Tanggal</div>
                             <div class="value">
                                 <div class="input-group">
                                     <input type="date" name="periode" class="input--style-6"
@@ -66,6 +66,7 @@
                                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                     @enderror
                                 </div>
+                                <div class="label--desc">Ukuran maksimal 3MB; dapat berupa jpg, png, jpeg, ataupun pdf</div>
                                 <div class="form-group" style="padding-top: 1rem">
                                     <img src="{{ asset('storage/images/' . $prestasi->image) }}" height="200" width="200"
                                         alt="" />
@@ -74,7 +75,7 @@
                         </div>
                         <div class="card-footer">
                             <button type="submit" class="btn btn--radius-2 btn--blue-2"
-                                onclick="update('{{ $prestasi->id }}')">Update</button>
+                                onclick="update('{{ $prestasi->id }}')">Simpan</button>
                         </div>
                     </form>
                 </div>

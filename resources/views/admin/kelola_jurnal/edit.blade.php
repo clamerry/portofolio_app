@@ -47,6 +47,7 @@
                             <div class="value">
                                 <div class="input-group">
                                     <textarea type="text" name="penulis" class="input--style-6" placeholder="Penulis" value="" required>{{ $jurnal->penulis }}</textarea>
+                                    <div class="label--desc">Nama penulis dipisahkan dengan tanda titik koma (;)</div>
                                     @error('penulis')
                                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                     @enderror
@@ -70,6 +71,7 @@
                             <div class="value">
                                 <div class="input-group js-input-file">
                                     <input class="form-control" style="" type="file" name="file" id="file">
+                                    <div class="label--desc">Ukuran maksimal 20MB, hanya dalam bentuk PDF</div>
                                     @error('file')
                                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                     @enderror
@@ -82,7 +84,7 @@
                         </div>
                         <div class="card-footer">
                             <button type="submit" class="btn btn--radius-2 btn--blue-2"
-                                onclick="update('{{ $jurnal->id }}')">Update</button>
+                                onclick="update('{{ $jurnal->id }}')">Simpan</button>
                         </div>
                     </form>
                 </div>

@@ -20,7 +20,7 @@ class PrestasiController extends Controller
     public function indexPrestasi()
     {
         $prestasi = Prestasi::join('mahasiswa', 'prestasis.mahasiswa_id', '=', 'mahasiswa.id')
-            ->get(['mahasiswa.nama', 'prestasis.id as id_prestasi', 'prestasis.judul', 'prestasis.status', 'prestasis.image'])
+            ->get(['mahasiswa.nama', 'prestasis.id as id_prestasi', 'prestasis.judul', 'prestasis.penyelenggara', 'prestasis.status', 'prestasis.image'])
             ->where('status', '=', 'Menunggu Verifikasi');
 
         /*SQL Join Command
@@ -66,7 +66,7 @@ class PrestasiController extends Controller
             'judul' => 'required',
             'penyelenggara' => 'required',
             'periode' => 'required',
-            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'image' => 'required|image|mimes:jpg,png,jpeg,pdf|max:3000',
         ]);
 
         $file = $request->file('image');

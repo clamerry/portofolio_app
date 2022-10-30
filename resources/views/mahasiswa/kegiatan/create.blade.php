@@ -12,7 +12,7 @@
                 <div class="card-heading">
                     <h5 class="title" style="font-size: 28px; text-align: end">Tambah Kegiatan Mahasiswa
                         <a class="btn btn--white btn--radius-2" style="float: left; text-decoration:none"
-                            href="{{ route('jurnal.index') }}"><i class="fas fa-arrow-left" style="color: #0F394C"></i></a>
+                            href="{{ route('kegiatan.index') }}"><i class="fas fa-arrow-left" style="color: #0F394C"></i></a>
                     </h5>
                 </div>
                 <div class="card-body">
@@ -26,7 +26,7 @@
                         <div class="form-row">
                             <div class="name">Jabatan</div>
                             <div class="value">
-                                <input type="text" name="jabatan" class="input--style-6" placeholder="jabatan" required>
+                                <input type="text" name="jabatan" class="input--style-6" placeholder="Jabatan" required>
                                 @error('jabatan')
                                     <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                 @enderror
@@ -37,7 +37,7 @@
                             <div class="value">
                                 <div class="input-group">
                                     <input type="text" name="kegiatan" class="input--style-6"
-                                        placeholder="kegiatan" required></textarea>
+                                        placeholder="Nama Kegiatan" required></textarea>
                                     @error('kegiatan')
                                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                     @enderror
@@ -65,11 +65,11 @@
                                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="label--desc">Ukuran maksimal 2MB</div>
+                                <div class="label--desc">Ukuran maksimal 3MB; dapat berupa jpg, png, jpeg, ataupun pdf</div>
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn--radius-2 btn--blue-2">Submit</button>
+                            <button type="submit" class="btn btn--radius-2 btn--blue-2">Simpan</button>
                         </div>
                     </form>
                 </div>

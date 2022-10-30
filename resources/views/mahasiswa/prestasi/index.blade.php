@@ -56,12 +56,12 @@
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Judul</th>
+                                                    <th>Judul Prestasi</th>
                                                     <th>Penyelenggara</th>
-                                                    <th>Periode</th>
-                                                    <th>Image</th>
+                                                    <th>Tanggal</th>
+                                                    <th>Sertifikat</th>
                                                     <th>Status</th>
-                                                    <th>Action</th>
+                                                    <th>Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -75,7 +75,7 @@
                                                         <td style="vertical-align: middle"><button type="button"
                                                                 class="btn btn-outline-primary" data-toggle="modal"
                                                                 data-target="#view_image{{ $prs->id }}">
-                                                                Show
+                                                                Lihat
                                                             </button>
                                                         </td>
                                                         <td style="vertical-align: middle">{{ $prs->status }}</td>
@@ -117,7 +117,7 @@
                                         <img src="{{ asset('storage/images/' . $prs->image) }}" style="width: 100%">
                                     </div>
                                     <div class="modal-footer justify-content-between">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
                                     </div>
                                 </div>
                                 <!-- /.modal-content -->

@@ -41,7 +41,7 @@ class ProjectController extends Controller
         $request->validate([
             'judul' => 'required',
             'deskripsi' => 'required',
-            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'image' => 'required|image|mimes:jpg,png,jpeg,pdf|max:3000',
         ]);
 
         $file = $request->file('image');
@@ -59,7 +59,7 @@ class ProjectController extends Controller
         Project::insert($prjData);
 
         return redirect()->route('project.index')
-            ->with('success', 'Project has been created successfully.');
+            ->with('success', 'Project berhasil disimpan.');
     }
 
     /**
@@ -127,7 +127,7 @@ class ProjectController extends Controller
         $project->update($prjData);
 
         return redirect()->route('project.index')
-            ->withSuccess('Project has been updated successfully.');
+            ->withSuccess('Project berhasil dubah.');
     }
 
     /**

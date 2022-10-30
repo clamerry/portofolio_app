@@ -60,8 +60,9 @@
                                                     <th>#</th>
                                                     <th>Nama</th>
                                                     <th>Prestasi</th>
+                                                    <th>Penyelenggara</th>
                                                     <th>Sertifikat</th>
-                                                    <th>Action</th>
+                                                    <th>Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -70,11 +71,12 @@
                                                         <td style="vertical-align: middle">{{ $loop->iteration }}</td>
                                                         <td style="vertical-align: middle">{{ $prs->nama }}</td>
                                                         <td style="vertical-align: middle">{{ $prs->judul }}</td>
+                                                        <td style="vertical-align: middle">{{ $prs->penyelenggara }}</td>
                                                         <td style="vertical-align: middle"><button type="button"
                                                                 class="btn btn-outline-primary" style=""
                                                                 data-toggle="modal"
                                                                 data-target="#sertifikat{{ $prs->id_prestasi }}">
-                                                                Show
+                                                                Lihat
                                                             </button></td>
 
                                                         <td style="vertical-align: middle">

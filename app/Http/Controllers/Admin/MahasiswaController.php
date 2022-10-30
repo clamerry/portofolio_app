@@ -79,7 +79,7 @@ class MahasiswaController extends Controller
         Mahasiswa::insert($mhsData);
 
         return redirect()->route('kelola_mahasiswa.index')
-            ->withSuccess('Mahasiswa has been created successfully.');
+            ->withSuccess('Data mahasiswa berhasil disimpan');
     }
 
     /**
@@ -173,7 +173,7 @@ class MahasiswaController extends Controller
 
 
         return redirect()->route('kelola_mahasiswa.index')
-            ->withSuccess('Mahasiswa has been updated successfully.');
+            ->withSuccess('Data mahasiswa berhasil diperbarui.');
     }
 
     /**
@@ -219,8 +219,8 @@ class MahasiswaController extends Controller
             //upload image to DB
             $mahasiswa->update(['image' => $fileName,]);
         } else {
-            return redirect()->back()->withDanger("You cant Update Blank Photo");
+            return redirect()->back()->withDanger("Foto tidak boleh kosong");
         }
-        return redirect()->back()->withSuccess("Profile Photo Updated");
+        return redirect()->back()->withSuccess("Foto Profil berhasil diperbarui");
     }
 }

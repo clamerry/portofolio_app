@@ -26,7 +26,7 @@
                         <div class="form-row">
                             <div class="name">Judul</div>
                             <div class="value">
-                                <input type="text" name="judul" class="input--style-6" placeholder="Judul" required>
+                                <input type="text" name="judul" class="input--style-6" placeholder="Judul Penelitian" required>
                                 @error('judul')
                                     <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                 @enderror
@@ -38,6 +38,7 @@
                                 <div class="input-group">
                                     <textarea type="text" name="penulis" class="input--style-6"
                                         placeholder="Penulis" required></textarea>
+                                        <div class="label--desc">Nama penulis dipisahkan dengan tanda titik koma (;)</div>
                                     @error('penulis')
                                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                     @enderror
@@ -48,7 +49,7 @@
                             <div class="name">Jurnal</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input type="text" name="jurnal" class="input--style-6" placeholder="Jurnal"
+                                    <input type="text" name="jurnal" class="input--style-6" placeholder="Nama Jurnal"
                                         required></textarea>
                                     @error('jurnal')
                                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
@@ -65,11 +66,11 @@
                                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="label--desc">Ukuran maksimal 2MB</div>
+                                <div class="label--desc">Ukuran maksimal 20MB, hanya dalam bentuk PDF</div>
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn--radius-2 btn--blue-2">Submit</button>
+                            <button type="submit" class="btn btn--radius-2 btn--blue-2">Simpan</button>
                         </div>
                     </form>
                 </div>

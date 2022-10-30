@@ -61,7 +61,7 @@
                                                 <th>Project</th>
                                                 <th>Deskripsi</th>
                                                 <th>Foto Project</th>
-                                                <th>Action</th>
+                                                <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -73,12 +73,12 @@
                                                     <td style="vertical-align: middle"><button type="button"
                                                             class="btn btn-outline-primary" data-toggle="modal"
                                                             data-target="#view_deskripsi{{ $prj->id_project }}">
-                                                            Show
+                                                            Lihat
                                                         </button></td>
                                                     <td style="vertical-align: middle"><button type="button"
                                                             class="btn btn-outline-primary" style=""
                                                             data-toggle="modal" data-target="#foto{{ $prj->id_project }}">
-                                                            Show
+                                                            Lihat
                                                         </button></td>
 
                                                     <td style="vertical-align: middle">
@@ -128,7 +128,7 @@
                                 <p>{{ $prj->deskripsi }}</p>
                             </div>
                             <div class="modal-footer justify-content-between">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
                             </div>
                         </div>
                         <!-- /.modal-content -->

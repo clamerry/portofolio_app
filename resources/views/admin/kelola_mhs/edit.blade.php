@@ -113,7 +113,7 @@
                         </div>
                         <div class="card-footer">
                             <button type="submit" class="btn btn--radius-2 btn--blue-2"
-                                onclick="update('{{ $mahasiswa->id }}')">Update</button>
+                                onclick="update('{{ $mahasiswa->id }}')">Simpan</button>
                         </div>
                     </form>
                 </div>

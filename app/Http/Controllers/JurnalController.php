@@ -145,7 +145,7 @@ class JurnalController extends Controller
         $jurnal->update($jrnlData);
 
         return redirect()->route('jurnal.index')
-            ->withSuccess('Jurnal has been updated successfully.');
+            ->withSuccess('Jurnal berhasil diubah.');
     }
 
     /**

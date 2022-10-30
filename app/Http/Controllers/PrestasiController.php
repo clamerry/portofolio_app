@@ -43,7 +43,7 @@ class PrestasiController extends Controller
             'judul' => 'required',
             'penyelenggara' => 'required',
             'periode' => 'required',
-            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'image' => 'required|image|mimes:jpg,png,jpeg,pdf|max:3000',
         ]);
 
         $file = $request->file('image');
@@ -133,7 +133,7 @@ class PrestasiController extends Controller
         $prestasi->update($prsData);
 
         return redirect()->route('prestasi.index')
-            ->withSuccess('Prestasi has been updated successfully.');
+            ->withSuccess('Prestasi berhasil diubah.');
     }
 
     /**

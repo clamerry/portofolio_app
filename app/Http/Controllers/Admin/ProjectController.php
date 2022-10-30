@@ -70,7 +70,7 @@ class ProjectController extends Controller
             'mahasiswa_id' => 'required',
             'judul' => 'required',
             'deskripsi' => 'required',
-            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'image' => 'required|image|mimes:jpg,png,jpeg,pdf|max:3000',
         ]);
 
         $file = $request->file('image');

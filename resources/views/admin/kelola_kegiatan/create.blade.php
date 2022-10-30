@@ -39,7 +39,7 @@
                         <div class="form-row">
                             <div class="name">Jabatan</div>
                             <div class="value">
-                                <input type="text" name="jabatan" class="input--style-6" placeholder="jabatan" required>
+                                <input type="text" name="jabatan" class="input--style-6" placeholder="Jabatan" required>
                                 @error('jabatan')
                                     <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                 @enderror
@@ -49,7 +49,7 @@
                             <div class="name">Nama Kegiatan</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input type="text" name="kegiatan" class="input--style-6" placeholder="kegiatan"
+                                    <input type="text" name="kegiatan" class="input--style-6" placeholder="Nama Kegiatan"
                                         required></textarea>
                                     @error('kegiatan')
                                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
@@ -79,11 +79,11 @@
                                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="label--desc">Ukuran maksimal 2MB</div>
+                                <div class="label--desc">Ukuran maksimal 3MB; dapat berupa jpg, png, jpeg, ataupun pdf</div>
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn--radius-2 btn--blue-2">Submit</button>
+                            <button type="submit" class="btn btn--radius-2 btn--blue-2">Simpan</button>
                         </div>
                     </form>
                 </div>

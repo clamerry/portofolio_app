@@ -48,6 +48,7 @@
                             <div class="value">
                                 <div class="input-group">
                                     <textarea name="deskripsi" class="textarea--style-6" placeholder="Deskripsi"required>{{ $project->deskripsi }}</textarea>
+                                    <div class="label--desc">Dapat disertakan link yang bersangkutan dengan project</div>
                                     @error('deskripsi')
                                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                     @enderror
@@ -59,6 +60,7 @@
                             <div class="value">
                                 <div class="input-group js-input-file">
                                     <input class="form-control" style="" type="file" name="image" id="image">
+                                    <div class="label--desc">Ukuran maksimal 3MB; dapat berupa jpg, png, jpeg, ataupun pdf</div>
                                     @error('image')
                                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                     @enderror
@@ -71,7 +73,7 @@
                         </div>
                         <div class="card-footer">
                             <button type="submit" class="btn btn--radius-2 btn--blue-2"
-                                onclick="update('{{ $project->id }}')">Update</button>
+                                onclick="update('{{ $project->id }}')">Simpan</button>
                         </div>
                     </form>
                 </div>

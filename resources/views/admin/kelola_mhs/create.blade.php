@@ -88,7 +88,7 @@
                             <div class="name">Program Studi</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <select name="prodi" id="prodi">
+                                    <select name="prodi" id="prodi" class="input--style-6">
                                         <option value="">--Pilih Program Studi--</option>
                                     </select>
                                     {{-- <input type="text" name="prodi" class="input--style-6" placeholder="Program Studi"
@@ -100,7 +100,7 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn--radius-2 btn--blue-2">Save</button>
+                            <button type="submit" class="btn btn--radius-2 btn--blue-2">Simpan</button>
                         </div>
                     </form>
                 </div>

@@ -54,11 +54,11 @@
                                         @method('PUT')
                                         <div class="input-group js-input-file justify-content-center">
                                             <input class="form-control" style="display:none" type="file" name="image" id="image" onchange="this.form.submit()">
-                                            {{-- <label for="image" class="text-center">
+                                            <label for="image" class="text-center">
                                                 <span class="btn text-white btn--blue btn-sm" style="border: 0px" >
-                                                    Upload Photo
+                                                    Ubah Foto Profil
                                                 </button>
-                                            </label> --}}
+                                            </label>
                                         </div>
                                     </form>
                                 </div>
@@ -100,10 +100,10 @@
                             </div>
                             <div class="row; p-2" style="padding-bottom: 1rem !important">
                                 <div class="col-sm-6">
-                                    {{-- <button type="button" class="btn text-white btn--blue btn--radius-2 mt-3 btn-sm"
+                                    <button type="button" class="btn text-white btn--blue btn--radius-2 mt-3 btn-sm"
                                         style="border: 0px; margin-top: 0 !important" data-bs-toggle="modal" data-bs-target="#changePassword">
-                                        Change Password
-                                    </button> --}}
+                                        Ubah Password
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -116,7 +116,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="staticBackdropLabel">Change Password</h5>
+                                <h5 class="modal-title" id="staticBackdropLabel">Ubah Password</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
@@ -124,29 +124,28 @@
                                 <form action="{{ route('updatePasswordMhs') }}" id="form" method="POST">
                                     @csrf
                                     <div class="form-group">
-                                        <label for="old_password">Old Password</label>
+                                        <label for="old_password">Password Lama</label>
                                         <input type="password" name="old_password" class="form-control" id="old_password" required>
                                         @if ($errors->any('old_password'))
                                             <span class="text-danger">{{ $errors->first('old_password') }}</span>
                                         @endif
                                     </div>
                                     <div class="form-group">
-                                        <label for="new_password">New Password</label>
+                                        <label for="new_password">Password Baru</label>
                                         <input type="password" name="new_password" class="form-control" id="new_password" required>
                                         @if ($errors->any('new_password'))
                                             <span class="text-danger">{{ $errors->first('new_password') }}</span>
                                         @endif
                                     </div>
                                     <div class="form-group">
-                                        <label for="confirm_password">Confirm Password</label>
+                                        <label for="confirm_password">Konfirmasi Password</label>
                                         <input type="password" name="confirm_password" class="form-control"
                                             id="confirm_password" required>
                                         @if ($errors->any('confirm_password'))
                                             <span class="text-danger">{{ $errors->first('confirm_password') }}</span>
                                         @endif
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Change
-                                        Password</button>
+                                    <button type="submit" class="btn btn-primary">Ubah</button>
                                 </form>
                             </div>
                         </div>

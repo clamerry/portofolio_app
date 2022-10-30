@@ -39,7 +39,7 @@
                         <div class="form-row">
                             <div class="name">Judul</div>
                             <div class="value">
-                                <input type="text" name="judul" class="input--style-6" placeholder="Judul" required>
+                                <input type="text" name="judul" class="input--style-6" placeholder="Judul Prestasi" required>
                                 @error('judul')
                                     <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                 @enderror
@@ -50,7 +50,7 @@
                             <div class="value">
                                 <div class="input-group">
                                     <input type="text" name="penyelenggara" class="input--style-6"
-                                        placeholder="Penyelenggara" required></textarea>
+                                        placeholder="Penyelenggara Kegiatan" required></textarea>
                                     @error('penyelenggara')
                                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                     @enderror
@@ -58,7 +58,7 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="name">Periode</div>
+                            <div class="name">Tanggal</div>
                             <div class="value">
                                 <div class="input-group">
                                     <input type="date" name="periode" class="input--style-6" placeholder="Periode"
@@ -79,11 +79,11 @@
                                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="label--desc">Ukuran maksimal 2MB</div>
+                                <div class="label--desc">Ukuran maksimal 3MB; dapat berupa jpg, png, jpeg, ataupun pdf</div>
                             </div>
                         </div>
                         <div class="card-footer">
-                            <button type="submit" class="btn btn--radius-2 btn--blue-2">Submit</button>
+                            <button type="submit" class="btn btn--radius-2 btn--blue-2">Simpan</button>
                         </div>
                     </form>
                 </div>

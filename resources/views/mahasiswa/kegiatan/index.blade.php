@@ -74,7 +74,7 @@
                                                         <td style="vertical-align: middle"><button type="button"
                                                                 class="btn btn-outline-primary" data-toggle="modal"
                                                                 data-target="#view_image{{ $kgt->id }}">
-                                                                Show
+                                                                Lihat
                                                             </button>
                                                         </td>
                                                         <td style="vertical-align: middle">{{ $kgt->status }}</td>
@@ -116,7 +116,7 @@
                                         <img src="{{ asset('storage/images/' . $kgt->image) }}" style="width: 100%">
                                     </div>
                                     <div class="modal-footer justify-content-between">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
                                     </div>
                                 </div>
                                 <!-- /.modal-content -->

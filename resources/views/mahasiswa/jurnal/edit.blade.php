@@ -37,6 +37,7 @@
                                 <div class="input-group">
                                     <input type="text" name="penulis" class="input--style-6" placeholder="penulis"
                                         value="{{ $jurnal->penulis }}" required></textarea>
+                                    <div class="label--desc">Nama penulis dipisahkan dengan tanda titik koma (;)</div>
                                     @error('penulis')
                                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                     @enderror
@@ -60,6 +61,7 @@
                             <div class="value">
                                 <div class="input-group js-input-file">
                                     <input class="form-control" style="" type="file" name="file" id="file">
+                                    <div class="label--desc">Ukuran maksimal 20MB, hanya dalam bentuk PDF</div>
                                     @error('file')
                                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                     @enderror

@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="{{ asset('/img/logo_undip.png') }}" rel="icon">
     {{-- <title>{{ config('app.name', 'Laravel') }}</title> <!-- Change app name --> --}}
-    <title>Portofolio App</title>
+    <title>Aplikasi Portofolio Mahasiswa</title>
 
     <!-- Google Fonts -->
     <link
@@ -152,6 +152,8 @@
     <!-- JQuery -->
     {{-- <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script> --}}
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+    
     @yield('extra-package')
     @yield('inlinejs')
     @yield('flashMessage')
