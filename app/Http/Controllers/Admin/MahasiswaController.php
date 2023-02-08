@@ -7,18 +7,15 @@ use App\Models\Kegiatan;
 use App\Models\Project;
 use App\Models\Prestasi;
 use App\Models\Mahasiswa;
-use App\Traits\FakultasTrait;
-use App\Traits\ProdiTrait;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
-use function GuzzleHttp\Promise\all;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use App\Models\Fakultas;
+use App\Models\Prodi;
 
 class MahasiswaController extends Controller
 {
-    use FakultasTrait, ProdiTrait;
     /**
      * Display a listing of the resource.
      *
@@ -37,10 +34,10 @@ class MahasiswaController extends Controller
      */
     public function create(Request $request)
     {
-        $fakultas = $this->listFakultas(); //this itu mengacu kepada class.
+        $fakultas = Fakultas::all(); //this itu mengacu kepada class.
 
         if ($request->ajax()) {
-            $prodi = $this->listProdi();
+            $prodi = Prodi::all();
             return response()->json([
                 'status' => 200,
                 'data'  => $prodi
@@ -67,13 +64,16 @@ class MahasiswaController extends Controller
             'prodi' => 'required',
         ]);
 
+        $fakultas = Fakultas::whereid($request->fakultas)->first();
+        $prodi = Prodi::whereid($request->prodi)->first();
+
         $mhsData = [
             'nama' => $request->nama,
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'nim' => $request->nim,
-            'fakultas' => $this->findNameFakultas($request->fakultas),
-            'prodi' => $this->findNameProdi($request->prodi),
+            'fakultas' => $fakultas->nama,
+            'prodi' => $prodi->nama,
         ];
 
         Mahasiswa::insert($mhsData);
@@ -123,11 +123,11 @@ class MahasiswaController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        $fakultas = $this->listFakultas(); //this itu mengacu kepada class.
-        $prodi = $this->listProdi();
+        $fakultas = Fakultas::all(); //this itu mengacu kepada class.
+        $prodi = Prodi::all();
 
         if ($request->ajax()) {
-            $prodi = $this->listProdi();
+            $prodi = Prodi::all();
             return response()->json([
                 'status' => 200,
                 'data'  => $prodi
@@ -158,14 +158,16 @@ class MahasiswaController extends Controller
         // $file = $request->file('image');
         // $fileName = time() . '.' . $file->getClientOriginalExtension();
         // $file->storeAs('public/images', $fileName);
+        $fakultas = Fakultas::whereid($request->fakultas)->first();
+        $prodi = Prodi::whereid($request->prodi)->first();
 
         $mhsData = [
             'nama' => $request->nama,
             'email' => $request->email,
             // 'password' => ($request->password),
             'nim' => $request->nim,
-            'fakultas' => $this->findNameFakultas($request->fakultas),
-            'prodi' => $this->findNameProdi($request->prodi),
+            'fakultas' => $fakultas->nama,
+            'prodi' => $prodi->nama,
         ];
 
         Mahasiswa::where('id', $id)

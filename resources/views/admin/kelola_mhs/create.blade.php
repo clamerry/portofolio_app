@@ -72,7 +72,7 @@
                                     <select name="fakultas" id="fakultas" class="input--style-6" onchange="findProdi(this)">
                                         <option value="" disabled selected>--Pilih Fakultas--</option>
                                         @foreach ($fakultas as $fk)
-                                            <option value="{{ $fk['id'] }}">{{ $fk['name'] }}</option>
+                                            <option value="{{ $fk->id }}">{{ $fk->nama }}</option>
                                         @endforeach
                                     </select>
                                     {{-- this membawa semua elemen pada bagian select --}}
@@ -125,10 +125,10 @@
                 dataType : "json",
                 success:function(result) {
                     if(result.status == 200){
-                        // console.log(result.data);
+                        console.log(result.data);
                         result.data.map( (v,i) => { //looping value dan index dari result data (dari controller)
-                            if(v.fk_id == fk_id) { //compare id yang dipilih dengan id dari listFakultas
-                                $('#prodi').append(`<option value="${v.id}">${v.name}</option>`); //menambahkan option baru, sesuai dengan id prodi yang sama
+                            if(v.id_fakultas == fk_id) { //compare id yang dipilih dengan id dari listFakultas
+                                $('#prodi').append(`<option value="${v.id}">${v.nama}</option>`); //menambahkan option baru, sesuai dengan id prodi yang sama
                             }
                         });
                     }

@@ -23,7 +23,7 @@ return new class extends Migration
             // $table->string('volume');
             // $table->string('halaman');
             $table->string('file');
-            $table->string('status');
+            $table->string('status', 50);
             $table->softDeletes(); //agar ketika menghapus data, tidak langsung hilang
         });
     }

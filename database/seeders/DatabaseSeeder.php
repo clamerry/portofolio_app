@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AdminTableSeeder::class);
         $this->call(MahasiswaTableSeeder::class);
         // $this->call(PrestasiSeeder::class);
-        
+        $this->call(FakultasTableSeeder::class);
+        $this->call(ProdiTableSeeder::class);
     }
 }

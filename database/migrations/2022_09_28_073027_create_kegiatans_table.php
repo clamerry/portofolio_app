@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('kegiatan');
             $table->string('periode');
             $table->string('image');
-            $table->string('status');
+            $table->string('status', 50);
             $table->softDeletes(); //agar ketika menghapus data, tidak langsung hilang
         });
     }

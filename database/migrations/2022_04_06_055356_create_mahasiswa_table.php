@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('mahasiswa', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->string('nim')->unique();
-            $table->string('fakultas');
-            $table->string('prodi');
+            $table->string('nama', 100);
+            $table->string('email', 100)->unique();
+            $table->string('password', 100);
+            $table->string('nim', 20)->unique();
+            $table->string('fakultas', 100);
+            $table->string('prodi', 100);
             $table->string('image')->nullable();
             $table->softDeletes();
         });

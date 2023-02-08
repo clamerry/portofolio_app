@@ -77,9 +77,9 @@
                                         onchange="findProdi(this)">
                                         <option value="" disabled selected>--Pilih Fakultas--</option>
                                         @foreach ($fakultas as $fk)
-                                            <option value="{{ $fk['id'] }}"
-                                                {{ strtolower($fk['name']) == strtolower($mahasiswa->fakultas) ? 'selected' : '' }}>
-                                                {{ $fk['name'] }}</option>
+                                            <option value="{{ $fk->id }}"
+                                                {{ strtolower($fk->nama) == strtolower($mahasiswa->fakultas) ? 'selected' : '' }}>
+                                                {{ $fk->nama }}</option>
                                         @endforeach
                                     </select>
                                     {{-- this membawa semua elemen pada bagian select --}}
@@ -98,9 +98,9 @@
                                     <select name="prodi" id="prodi" class="input--style-6">
                                         <option value="" disabled selected>--Pilih Program Studi--</option>
                                         @foreach ($prodi as $prd)
-                                            @if(strtolower($prd['name']) == strtolower($mahasiswa->prodi))
-                                                <option value="{{ $prd['id'] }}" selected>
-                                                    {{ $prd['name'] }}
+                                            @if(strtolower($prd->nama) == strtolower($mahasiswa->prodi))
+                                                <option value="{{ $prd->id }}" selected>
+                                                    {{ $prd->nama }}
                                                 </option>
                                             @endif
                                         @endforeach
@@ -140,8 +140,8 @@
                     if(result.status == 200){
                         // console.log(result.data);
                         result.data.map( (v,i) => { //looping value dan index dari result data (dari controller)
-                            if(v.fk_id == fk_id) { //compare id yang dipilih dengan id dari listFakultas
-                                $('#prodi').append(`<option value="${v.id}">${v.name}</option>`); //menambahkan option baru, sesuai dengan id prodi yang sama
+                            if(v.id_fakultas == fk_id) { //compare id yang dipilih dengan id dari listFakultas
+                                $('#prodi').append(`<option value="${v.id}">${v.nama}</option>`); //menambahkan option baru, sesuai dengan id prodi yang sama
                             }
                         });
                     }

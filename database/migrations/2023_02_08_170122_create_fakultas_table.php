@@ -13,14 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('projects', function (Blueprint $table) {
+        Schema::create('fakultas', function (Blueprint $table) {
             $table->id();
-            $table->foreignID('mahasiswa_id');
-            $table->string('judul');
-            $table->text('deskripsi');
-            $table->string('image');
-            $table->string('status', 50);
-            $table->softDeletes(); //agar ketika menghapus data, tidak langsung hilang
+            $table->string('nama');
         });
     }
 
@@ -31,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('projects');
+        Schema::dropIfExists('fakultas');
     }
 };
