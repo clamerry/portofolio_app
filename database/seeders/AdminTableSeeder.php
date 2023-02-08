@@ -23,7 +23,7 @@ class AdminTableSeeder extends Seeder
             [
                 'nama'  => 'Admin', 
                 'email' => 'admin@admin.com',
-                'password' => bcrypt('admin'),
+                'password' => bcrypt('adminbaru'),
             ]
         ];
 

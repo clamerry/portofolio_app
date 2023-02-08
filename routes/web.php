@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\JurnalController as JurnalControllerAdmin;
 use App\Http\Controllers\Admin\KegiatanController as KegiatanControllerAdmin;
 use App\Http\Controllers\DashboardMahasiswaController;
 use App\Http\Controllers\Auth\ChangePasswordController;
+use App\Http\Controllers\guestController;
 use App\Models\Mahasiswa;
 
 /*
@@ -33,19 +34,21 @@ use App\Models\Mahasiswa;
 
 Route::get('/',  function () {
     return redirect('/home');
-});
+})->name('home');
 
 Route::get('/home', function () {
     return view('home');
 });
 
 
-
+//Guest
+Route::resource('/search', guestController::class);
+Route::post('searchPorto', [guestController::class, 'searchPorto'])->name('searchPorto');
 
 
 //Admin
 Route::get('/login/admin', [LoginController::class, 'showAdminLoginForm']);
-Route::post('/login/admin', [LoginController::class, 'adminLogin']);
+Route::post('/login/admin', [LoginController::class, 'adminLogin'])->name('adminLogin');
 Route::post('/updatePasswordAdm', [ChangePasswordController::class, 'updatePasswordAdm'])->name('updatePasswordAdm');
 Route::group(['middleware' => 'auth:admin'], function () {
     //Route for Dashboard
@@ -108,7 +111,7 @@ Route::group(['middleware' => 'auth:admin'], function () {
 
 //Mahasiswa
 Route::get('/login/mahasiswa', [LoginController::class, 'showMahasiswaLoginForm']);
-Route::post('/login/mahasiswa', [LoginController::class, 'mahasiswaLogin']);
+Route::post('/login/mahasiswa', [LoginController::class, 'mahasiswaLogin'])->name('mahasiswaLogin');
 Route::get('/register/mahasiswa', [RegisterController::class, 'showMahasiswaRegisterForm']);
 Route::post('/register/mahasiswa', [RegisterController::class, 'createMahasiswa']);
 Route::post('/updatePasswordMhs', [ChangePasswordController::class, 'updatePasswordMhs'])->name('updatePasswordMhs');
@@ -136,8 +139,9 @@ Route::group(['middleware' => 'auth:mahasiswa'], function () {
     Route::resource('/verifikasi', VerifikasiController::class);
 });
 
+
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/test', function () {
-    return view('test');
+    return view('guest.test');
 });

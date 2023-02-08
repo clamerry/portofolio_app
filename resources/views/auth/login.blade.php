@@ -16,8 +16,10 @@
     <!-- Styles -->
     <link rel="icon" type="image/png" href="{{ asset('img/logo_undip.png') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('login/vendor/bootstrap/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('login/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('login/fonts/iconic/css/material-design-iconic-font.min.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('login/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('login/fonts/iconic/css/material-design-iconic-font.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('login/vendor/animate/animate.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('login/vendor/css-hamburgers/hamburgers.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('login/vendor/animsition/css/animsition.min.css') }}">
@@ -25,6 +27,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('login/vendor/daterangepicker/daterangepicker.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('login/css/util.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('login/css/main.css') }}">
+
+    <!-- SweetAlert -->
+    <link rel="stylesheet" href="{{ asset('lte/plugins/sweetalert2/sweetalert2.min.css') }}">
     {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
 
 </head>
@@ -87,6 +92,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 
     <!-- Scripts -->
@@ -99,7 +105,36 @@
     <script src="{{ asset('login/vendor/daterangepicker/daterangepicker.js') }}"></script>
     <script src="{{ asset('login/vendor/countdowntime/countdowntime.js') }}"></script>
     <script src="{{ asset('login/js/main.js') }}"></script>
-    {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
+
+    {{-- SweetAlert --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ asset('lte/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+
+    @if ($message = Session::get('danger'))
+        <script>
+            // alert("{{ $message }}")
+
+            // swal.fire("Ups! terjadi kesalahan", "{{ Session::get('danger') }}", "danger");
+            // console.log('hehe');
+
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'error',
+                title: '{{ $message }}'
+            })
+        </script>
+    @endif
 </body>
 
 </html>

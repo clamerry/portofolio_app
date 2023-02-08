@@ -56,6 +56,10 @@ trait FakultasTrait
                 'id' => 11,
                 'name' => 'Fakultas Psikologi'
            ],
+           [
+               'id' => 12,
+               'name' => 'Sekolah Vokasi'
+           ]
         ];
     }
 

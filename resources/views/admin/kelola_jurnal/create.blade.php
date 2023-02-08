@@ -78,7 +78,7 @@
                                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="label--desc">Ukuran maksimal 20MB, hanya dalam bentuk PDF</div>
+                                <div class="label--desc">Ukuran maksimal 10MB, hanya dalam bentuk PDF</div>
                             </div>
                         </div>
                         <div class="card-footer">

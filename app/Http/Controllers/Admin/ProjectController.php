@@ -70,7 +70,11 @@ class ProjectController extends Controller
             'mahasiswa_id' => 'required',
             'judul' => 'required',
             'deskripsi' => 'required',
-            'image' => 'required|image|mimes:jpg,png,jpeg,pdf|max:3000',
+            'image' => 'required|image|mimes:jpg,png,jpeg|max:3000',
+        ], [
+            'image.image' => 'Berkas harus berupa gambar',
+            'image.mimes' => 'Gambar bukan termasuk bentuk jpg, png, jpeg',
+            'image.max' => 'Ukuran gambar lebih besar dari 3MB'
         ]);
 
         $file = $request->file('image');
@@ -115,6 +119,11 @@ class ProjectController extends Controller
         $request->validate([
             'judul' => 'required',
             'deskripsi' => 'required',
+            'image' => 'image|mimes:jpg,png,jpeg|max:3000',
+        ], [
+            'image.image' => 'Berkas harus berupa gambar',
+            'image.mimes' => 'Gambar bukan termasuk bentuk jpg, png, jpeg',
+            'image.max' => 'Ukuran gambar lebih besar dari 3MB'
         ]);
 
         if ($request->hasFile('image') && $request->file('image') instanceof UploadedFile) {

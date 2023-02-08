@@ -22,7 +22,9 @@ class ChangePasswordController extends Controller
     $request->validate([
       'old_password'=>'required|min:6',
       'new_password'=>'required|min:6',
-      'confirm_password'=>'required',
+      'confirm_password'=>'required|same:new_password',
+    ], [
+      'confirm_password.same' => 'Konfirmasi password tidak sesuai'
     ]);
 
     $mhs_login = auth()->user();
@@ -33,7 +35,7 @@ class ChangePasswordController extends Controller
       ]);
       return redirect()->back()->withSuccess('Password berhasil diubah');
     }else{
-      return redirect()->back()->withDanger('');
+      return redirect()->back()->withErrors('Password tidak sesuai');
     }
   }
   public function updatePasswordAdm(Request $request)

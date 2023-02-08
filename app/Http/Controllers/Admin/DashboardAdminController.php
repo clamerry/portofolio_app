@@ -8,7 +8,7 @@ use App\Models\Kegiatan;
 use App\Models\Prestasi;
 use App\Models\Mahasiswa;
 use App\Http\Controllers\Controller;
-
+use Closure;
 use Illuminate\Http\Request;
 
 class DashboardAdminController extends Controller
@@ -73,4 +73,5 @@ class DashboardAdminController extends Controller
 
         return view('admin.dashboard', compact('mahasiswa', 'prestasi', 'dataPrs', 'project', 'dataPrj', 'jurnal', 'dataJrnl', 'kegiatan', 'dataKgt'));
     }
+
 }

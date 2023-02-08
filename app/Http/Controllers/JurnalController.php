@@ -43,10 +43,10 @@ class JurnalController extends Controller
             'judul' => 'required',
             'penulis' => 'required',
             'jurnal' => 'required',
-            // 'tahun' => 'required',
-            // 'volume' => 'required',
-            // 'halaman' => 'required',
-            'file' => 'required|mimes:pdf|max:20000',
+            'file' => 'required|mimes:pdf|max:10000',
+        ], [
+            'image.mimes' => 'Berkas bukan termasuk bentuk pdf',
+            'file.max' => 'Ukuran berkas lebih besar dari 10MB'
         ]);
 
         $file = $request->file('file');
@@ -60,9 +60,6 @@ class JurnalController extends Controller
             'judul' => $request->judul,
             'penulis' => $request->penulis,
             'jurnal' => $request->jurnal,
-            // 'tahun' => $request->tahun,
-            // 'volume' => $request->volume,
-            // 'halaman' => $request->halaman,
             'file' => $fileName,
             'status' => 'Menunggu Verifikasi'
         ];
@@ -110,10 +107,10 @@ class JurnalController extends Controller
             'judul' => 'required',
             'penulis' => 'required',
             'jurnal' => 'required',
-            // 'tahun' => 'required',
-            // 'volume' => 'required',
-            // 'halaman' => 'required',
-            // 'file' => 'required|mimes:pdf|max:20000',
+            'file' => 'mimes:pdf|max:10000',
+        ], [
+            'file.mimes' => 'Berkas bukan termasuk bentuk pdf',
+            'file.max' => 'Ukuran berkas lebih besar dari 10MB'
         ]);
         if ($request->hasFile('file') && $request->file('file') instanceof UploadedFile) {
             
@@ -136,9 +133,6 @@ class JurnalController extends Controller
             'judul' => $request->judul,
             'penulis' => $request->penulis,
             'jurnal' => $request->jurnal,
-            // 'tahun' => $request->tahun,
-            // 'volume' => $request->volume,
-            // 'halaman' => $request->halaman,
             'status' => 'Menunggu Verifikasi'
         ];
 

@@ -201,6 +201,13 @@ class MahasiswaController extends Controller
 
     public function updateProfile(Request $request, $id)
     {
+        $request->validate([
+            'image' => 'image|mimes:jpg,png,jpeg|max:3000',
+        ], [
+            'image.image' => 'Berkas harus berupa gambar',
+            'image.mimes' => 'Gambar bukan termasuk bentuk jpg, png, jpeg',
+            'image.max' => 'Ukuran gambar lebih besar dari 3MB'
+        ]);
         // dd($id, $request->file('image'), $request->hasFile('image'), $request);
         $mahasiswa = Mahasiswa::where('id', $id)->first();
 

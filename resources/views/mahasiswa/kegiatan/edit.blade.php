@@ -62,7 +62,7 @@
                             <div class="value">
                                 <div class="input-group js-input-file">
                                     <input class="form-control" style="" type="file" name="image" id="image">
-                                    <div class="label--desc">Ukuran maksimal 3MB; dapat berupa jpg, png, jpeg, ataupun pdf</div>
+                                    <div class="label--desc">Ukuran maksimal 3MB; dapat berupa JPG, PNG, JPEG</div>
                                     @error('image')
                                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                                     @enderror

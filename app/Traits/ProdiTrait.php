@@ -270,6 +270,191 @@ trait ProdiTrait
                 'fk_id' => 11,
                 'name' => 'S1-Psikologi'
             ],
+            [
+                'id' => 53,
+                'fk_id' => 12,
+                'name' => 'D-IV-Teknologi Rekayasa Kimia Industri'
+            ],
+            [
+                'id' => 54,
+                'fk_id' => 12,
+                'name' => 'D-IV-Teknologi Rekayasa Otomasi'
+            ],
+            [
+                'id' => 55,
+                'fk_id' => 12,
+                'name' => 'D-IV-Rekayasa Perancangan Mekanik'
+            ],
+            [
+                'id' => 56,
+                'fk_id' => 12,
+                'name' => 'D-IV-Teknologi Rekayasa Konstruksi Perkapalan'
+            ],
+            [
+                'id' => 57,
+                'fk_id' => 12,
+                'name' => 'D-IV-Teknik Listrik Industri'
+            ],
+            [
+                'id' => 58,
+                'fk_id' => 12,
+                'name' => 'D-IV-Perencanaan Tata Ruang dan Pertanahan'
+            ],
+            [
+                'id' => 59,
+                'fk_id' => 12,
+                'name' => 'D-IV-Teknik Infrastruktur Sipil dan Perancangan Arsitektur'
+            ],
+            [
+                'id' => 60,
+                'fk_id' => 12,
+                'name' => 'D-IV-Akuntansi Perpajakan'
+            ],
+            [
+                'id' => 61,
+                'fk_id' => 12,
+                'name' => 'D-IV-Manajemen dan Administrasi Logistik'
+            ],
+            [
+                'id' => 62,
+                'fk_id' => 12,
+                'name' => 'D-IV-Bahasa Asing Terapan'
+            ],
+            [
+                'id' => 63,
+                'fk_id' => 12,
+                'name' => 'D-IV-Informasi dan Humas'
+            ],
+            [
+                'id' => 64,
+                'fk_id' => 12,
+                'name' => 'D-III-Teknologi Kimia'
+            ],
+            [
+                'id' => 65,
+                'fk_id' => 12,
+                'name' => 'D-III-Teknologi Elektronika'
+            ],
+            [
+                'id' => 66,
+                'fk_id' => 12,
+                'name' => 'D-III-Teknologi Mesin'
+            ],
+            [
+                'id' => 67,
+                'fk_id' => 12,
+                'name' => 'D-III-Teknologi Perancangan dan Konstruksi Kapal'
+            ],
+            [
+                'id' => 68,
+                'fk_id' => 12,
+                'name' => 'D-III-Teknologi Instrumentasi'
+            ],
+            [
+                'id' => 69,
+                'fk_id' => 12,
+                'name' => 'D-III-Teknologi Sipil'
+            ],
+            [
+                'id' => 70,
+                'fk_id' => 12,
+                'name' => 'D-III-Perencanaan Tata Ruang Wilayah dan Kota'
+            ],
+            [
+                'id' => 71,
+                'fk_id' => 12,
+                'name' => 'D-III-Perencanaan Wilayah dan Kota K. Pekalongan'
+            ],
+            [
+                'id' => 72,
+                'fk_id' => 12,
+                'name' => 'D-III-Gambar Arsitektur'
+            ],
+            [
+                'id' => 73,
+                'fk_id' => 12,
+                'name' => 'D-III-Administrasi Pertanahan'
+            ],
+            [
+                'id' => 74,
+                'fk_id' => 12,
+                'name' => 'D-III-Manajemen'
+            ],
+            [
+                'id' => 75,
+                'fk_id' => 12,
+                'name' => 'D-III-Manajemen K.Rembang'
+            ],
+            [
+                'id' => 76,
+                'fk_id' => 12,
+                'name' => 'D-III-Administrasi Pajak'
+            ],
+            [
+                'id' => 77,
+                'fk_id' => 12,
+                'name' => 'D-III-Administrasi Pajak K.Batang'
+            ],
+            [
+                'id' => 78,
+                'fk_id' => 12,
+                'name' => 'D-III-Akuntansi'
+            ],
+            [
+                'id' => 79,
+                'fk_id' => 12,
+                'name' => 'D-III-Akuntansi K. Pekalongan'
+            ],
+            [
+                'id' => 80,
+                'fk_id' => 12,
+                'name' => 'D-III-Usaha Budidaya Ternak'
+            ],
+            [
+                'id' => 81,
+                'fk_id' => 12,
+                'name' => 'D-III-Manajemen Pemasaran'
+            ],
+            [
+                'id' => 82,
+                'fk_id' => 12,
+                'name' => 'D-III-Keuangan Publik'
+            ],
+            [
+                'id' => 83,
+                'fk_id' => 12,
+                'name' => 'D-III-Hubungan Masyarakat'
+            ],
+            [
+                'id' => 84,
+                'fk_id' => 12,
+                'name' => 'D-III-Hubungan Masyarakat K. Batang'
+            ],
+            [
+                'id' => 85,
+                'fk_id' => 12,
+                'name' => 'D-III-Administrasi Perkantoran'
+            ],
+            [
+                'id' => 86,
+                'fk_id' => 12,
+                'name' => 'D-III-Perpustakaan dan Informasi'
+            ],
+            [
+                'id' => 87,
+                'fk_id' => 12,
+                'name' => 'D-III-Kearsipan'
+            ],
+            [
+                'id' => 88,
+                'fk_id' => 12,
+                'name' => 'D-III-Bahasa Inggris'
+            ],
+            [
+                'id' => 87,
+                'fk_id' => 12,
+                'name' => 'D-III-Bahasa Jepang'
+            ],
             
         ];
     }

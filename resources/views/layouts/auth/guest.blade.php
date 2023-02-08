@@ -64,13 +64,44 @@
 <body class="hold-transition sidebar-mini layout-fixed mt-0">
     <div class="wrapper">
         <!-- Navbar -->
-        @include('layouts.auth.navbar')
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light shadow-sm" style="margin-left:0px ">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="index3.html" class="nav-link">Home</a>
+                </li>
+            </ul>
 
-        <!-- Sidebar -->
-        @include('layouts.auth.sidebar')
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav ms-auto">
+                    <!-- Authentication Links -->
+                    @guest
+                        @if (Route::has('login'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            </li>
+                        @endif
+                    @else
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ Auth::user()->nama }}
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="{{ route('logout') }}">{{ __('Logout') }}</a>
+                                {{-- <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a> --}}
+                            </div>
+                        </li>
+                    @endguest
+                </ul>
+        </nav>
+
 
         <section class="content">
-            <div class="container-fluid">
+            <div class="container-fluid" style="margin:0px; padding:0px">
                 <div class="toast" style="float: right; width:265px">
                     <div class="toast-header">
                         <i class="bi bi-wifi"></i>&nbsp;&nbsp;&nbsp;

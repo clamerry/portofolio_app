@@ -40,7 +40,6 @@
             @endguest
         </ul>
 
-
         <!-- Uncommand to Unlock Navbar Search -->
         
         {{-- <li class="nav-item">

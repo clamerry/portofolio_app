@@ -70,7 +70,10 @@ class JurnalController extends Controller
             'judul' => 'required',
             'penulis' => 'required',
             'jurnal' => 'required',
-            'file' => 'required|mimes:pdf|max:20000',
+            'file' => 'required|mimes:pdf|max:10000',
+        ], [
+            'image.mimes' => 'Berkas bukan termasuk bentuk pdf',
+            'file.max' => 'Ukuran berkas lebih besar dari 10MB'
         ]);
 
         $file = $request->file('file');
@@ -117,7 +120,10 @@ class JurnalController extends Controller
             'judul' => 'required',
             'penulis' => 'required',
             'jurnal' => 'required',
-            'file' => 'mimes:pdf|max:20000',
+            'file' => 'mimes:pdf|max:10000',
+        ], [
+            'file.mimes' => 'Berkas bukan termasuk bentuk pdf',
+            'file.max' => 'Ukuran berkas lebih besar dari 10MB'
         ]);
 
         if ($request->hasFile('file') && $request->file('file') instanceof UploadedFile) {

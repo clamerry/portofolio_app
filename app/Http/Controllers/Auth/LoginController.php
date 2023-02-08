@@ -58,9 +58,10 @@ class LoginController extends Controller
     //nambah session email dan password, get remember: untuk ngasih token
     if (FacadesAuth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
 
-      return redirect()->intended('/admin');
+      return redirect()->intended('/admin')->with(['successLogin' => 'Login berhasil!']);
     }
-    return back()->withInput($request->only('email', 'remember'));
+    // return redirect()->back()->with(['danger' => 'Login Gagal']);
+    return redirect()->back()->with(['danger' => 'Login Gagal']);
   }
 
   public function showMahasiswaLoginForm()
@@ -77,9 +78,9 @@ class LoginController extends Controller
 
     if (FacadesAuth::guard('mahasiswa')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
 
-      return redirect()->intended('/mahasiswa');
+      return redirect()->intended('/mahasiswa')->with(['successLogin' => 'Login berhasil!']);
     }
-    return back()->withInput($request->only('email', 'remember'));
+    return redirect()->back()->with(['danger' => 'Login Gagal']);
   }
 
 }

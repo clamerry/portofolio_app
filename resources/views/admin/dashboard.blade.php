@@ -1,9 +1,11 @@
+@extends('layouts.auth.app')
+
 @section('extra-css')
     <!-- Datatables, SweetAlert -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" href="{{ asset('lte/plugins/sweetalert2/sweetalert2.min.css') }}">
 @endsection
 
-@extends('layouts.auth.app')
 @section('content')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -15,7 +17,7 @@
                         <h1 class="m-0">Dashboard</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
-
+                        <div id="login_success"></div>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -100,7 +102,7 @@
                 <!-- /.row -->
                 <br>
                 <h3 class="m-0">Preview Permohonan Verifikasi</h1>
-                <br>
+                    <br>
                     {{-- Tabel Permohonan Verifikasi --}}
                     <div class="row row-cols-1 row-cols-md-2 g-4">
                         <div class="col">
@@ -232,4 +234,27 @@
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
     <script src="{{ asset('lte/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+@endsection
+
+@section('flashMessage')
+    @if (Session::has('successLogin'))
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: 'Login berhasil!'
+            })
+        </script>
+    @endif
 @endsection
