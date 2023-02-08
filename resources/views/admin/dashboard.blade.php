@@ -125,7 +125,7 @@
                                             @foreach ($dataPrs as $prs)
                                                 <tr>
                                                     <td style="vertical-align: middle">{{ $loop->iteration }}</td>
-                                                    <td style="vertical-align: middle">{{ $prs->nama }}</td>
+                                                    <td style="vertical-align: middle">{{ $prs->Mahasiswa->nama }}</td>
                                                     <td style="vertical-align: middle">{{ $prs->judul }}</td>
                                                 </tr>
                                             @endforeach
@@ -153,7 +153,7 @@
                                             @foreach ($dataPrj as $prj)
                                                 <tr>
                                                     <td style="vertical-align: middle">{{ $loop->iteration }}</td>
-                                                    <td style="vertical-align: middle">{{ $prj->nama }}</td>
+                                                    <td style="vertical-align: middle">{{ $prj->Mahasiswa->nama }}</td>
                                                     <td style="vertical-align: middle">{{ $prj->judul }}</td>
                                                 </tr>
                                             @endforeach
@@ -182,7 +182,7 @@
                                             @foreach ($dataJrnl as $jrnl)
                                                 <tr>
                                                     <td style="vertical-align: middle">{{ $loop->iteration }}</td>
-                                                    <td style="vertical-align: middle">{{ $jrnl->nama }}</td>
+                                                    <td style="vertical-align: middle">{{ $jrnl->Mahasiswa->nama }}</td>
                                                     <td style="vertical-align: middle">{{ $jrnl->judul }}</td>
                                                 </tr>
                                             @endforeach
@@ -211,7 +211,7 @@
                                             @foreach ($dataKgt as $kgt)
                                                 <tr>
                                                     <td style="vertical-align: middle">{{ $loop->iteration }}</td>
-                                                    <td style="vertical-align: middle">{{ $kgt->nama }}</td>
+                                                    <td style="vertical-align: middle">{{ $kgt->Mahasiswa->nama }}</td>
                                                     <td style="vertical-align: middle">{{ $kgt->kegiatan }}</td>
                                                 </tr>
                                             @endforeach

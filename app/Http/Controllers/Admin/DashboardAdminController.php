@@ -21,62 +21,101 @@ class DashboardAdminController extends Controller
      */
     public function index()
     {
-        //mahasiswa aktif
         $authAdmin = Auth::guard('admin')->user();
         if ($authAdmin->role == 'admin') {
             $prodi = strtolower($authAdmin->prodi);
+
+            //mahasiswa aktif
             $mahasiswa = Mahasiswa::whereRaw('LOWER(`prodi`) LIKE ? ','%'.strtolower($prodi).'%')->count();
+
+            // prestasi
+            $prestasi = [
+                'verifikasi' => Prestasi::where('status', 'Telah diverifikasi')->whereRaw('LOWER(`prodi`) LIKE ? ','%'.strtolower($prodi).'%')->get()->count(),
+                'total' => Prestasi::all()->count()
+            ];
+            
+            //project (v)
+            $project = [
+                'verifikasi' => Project::where('status', 'Telah diverifikasi')->whereRaw('LOWER(`prodi`) LIKE ? ','%'.strtolower($prodi).'%')->get()->count(),
+                'total' => Project::all()->count()
+            ];
+
+            //jurnal (v)
+            $jurnal = [
+                'verifikasi' => Jurnal::where('status', 'Telah diverifikasi')->whereRaw('LOWER(`prodi`) LIKE ? ','%'.strtolower($prodi).'%')->get()->count(),
+                'total' => Jurnal::all()->count()
+            ];
+
+            //kegiatan (v)
+            $kegiatan = [
+                'verifikasi' => Kegiatan::where('status', 'Telah diverifikasi')->whereRaw('LOWER(`prodi`) LIKE ? ','%'.strtolower($prodi).'%')->get()->count(),
+                'total' => Kegiatan::all()->count()
+            ];
+
+            //prestasi table 
+            $dataPrs = Prestasi::join('mahasiswa', 'mahasiswa.id', '=', 'prestasis.mahasiswa_id')
+                ->whereRaw('LOWER(`prodi`) LIKE ? ','%'.strtolower($prodi).'%')
+                ->where('status', '=', 'Telah diverifikasi')->take(5)->get();
+            
+            //project table
+            $dataPrj = Project::join('mahasiswa', 'mahasiswa.id', '=', 'projects.mahasiswa_id')
+                ->whereRaw('LOWER(`prodi`) LIKE ? ','%'.strtolower($prodi).'%')
+                ->where('status', '=', 'Telah diverifikasi')->take(5)->get();
+            
+            //jurnal table
+            $dataJrnl = Jurnal::join('mahasiswa', 'mahasiswa.id', '=', 'jurnals.mahasiswa_id')
+                ->whereRaw('LOWER(`prodi`) LIKE ? ','%'.strtolower($prodi).'%')
+                ->where('status', '=', 'Telah diverifikasi')->take(5)->get();
+            
+            //kegiatan table
+            $dataKgt = Kegiatan::join('mahasiswa', 'mahasiswa.id', '=', 'kegiatans.mahasiswa_id')
+                ->whereRaw('LOWER(`prodi`) LIKE ? ','%'.strtolower($prodi).'%')
+                ->where('status', '=', 'Telah diverifikasi')->take(5)->get();
+
         } else {
+            //mahasiswa aktif
             $mahasiswa = Mahasiswa::count();
+
+            // prestasi
+            $prestasi = [
+                'verifikasi' => Prestasi::where('status', 'Telah diverifikasi')->get()->count(),
+                'total' => Prestasi::all()->count()
+            ]; 
+
+            //project (v)
+            $project = [
+                'verifikasi' => Project::where('status', 'Telah diverifikasi')->get()->count(),
+                'total' => Project::all()->count()
+            ];
+
+            //jurnal (v)
+            $jurnal = [
+                'verifikasi' => Jurnal::where('status', 'Telah diverifikasi')->get()->count(),
+                'total' => Jurnal::all()->count()
+            ];
+
+            //kegiatan (v)
+            $kegiatan = [
+                'verifikasi' => Kegiatan::where('status', 'Telah diverifikasi')->get()->count(),
+                'total' => Kegiatan::all()->count()
+            ];
+
+            //prestasi table 
+            $dataPrs = Prestasi::join('mahasiswa', 'mahasiswa.id', '=', 'prestasis.mahasiswa_id')
+                ->where('status', '=', 'Telah diverifikasi')->take(5)->get();
+
+            //project table
+            $dataPrj = Project::join('mahasiswa', 'mahasiswa.id', '=', 'projects.mahasiswa_id')
+                ->where('status', '=', 'Telah diverifikasi')->take(5)->get();
+
+            //jurnal table
+            $dataJrnl = Jurnal::join('mahasiswa', 'mahasiswa.id', '=', 'jurnals.mahasiswa_id')
+                ->where('status', '=', 'Telah diverifikasi')->take(5)->get();
+
+            //kegiatan table
+            $dataKgt = Kegiatan::join('mahasiswa', 'mahasiswa.id', '=', 'kegiatans.mahasiswa_id')
+                ->where('status', '=', 'Telah diverifikasi')->take(5)->get();
         }
-
-        //prestasi (v)
-        $prestasi = [
-            'verifikasi' => Prestasi::where('status', 'Telah diverifikasi')->get()->count(),
-            'total' => Prestasi::all()->count()
-        ];
-
-        //preview tabel prestasi
-        $dataPrs = Prestasi::join('mahasiswa', 'prestasis.mahasiswa_id', '=', 'mahasiswa.id')
-            ->get(['mahasiswa.nama', 'prestasis.id as id_prestasi', 'prestasis.judul', 'prestasis.status'])
-            ->where('status', '=', 'Menunggu Verifikasi')
-            ->take(5);
-
-        //project (v)
-        $project = [
-            'verifikasi' => Project::where('status', 'Telah diverifikasi')->get()->count(),
-            'total' => Project::all()->count()
-        ];
-
-        //preview tabel project
-        $dataPrj = Project::join('mahasiswa', 'projects.mahasiswa_id', '=', 'mahasiswa.id')
-            ->get(['mahasiswa.nama', 'projects.id as id_project', 'projects.judul', 'projects.status'])
-            ->where('status', '=', 'Menunggu Verifikasi')
-            ->take(5);
-
-        //jurnal (v)
-        $jurnal = [
-            'verifikasi' => Jurnal::where('status', 'Telah diverifikasi')->get()->count(),
-            'total' => Jurnal::all()->count()
-        ];
-
-        //preview tabel jurnal
-        $dataJrnl = Jurnal::join('mahasiswa', 'jurnals.mahasiswa_id', '=', 'mahasiswa.id')
-            ->get(['mahasiswa.nama', 'jurnals.id as id_jurnal', 'jurnals.judul', 'jurnals.status'])
-            ->where('status', '=', 'Menunggu Verifikasi')
-            ->take(5);
-
-        //kegiatan (v)
-        $kegiatan = [
-            'verifikasi' => Kegiatan::where('status', 'Telah diverifikasi')->get()->count(),
-            'total' => Kegiatan::all()->count()
-        ];
-
-        //preview tabel kegiatan
-        $dataKgt = Kegiatan::join('mahasiswa', 'kegiatans.mahasiswa_id', '=', 'mahasiswa.id')
-            ->get(['mahasiswa.nama', 'kegiatans.id as id_kegiatan', 'kegiatans.kegiatan', 'kegiatans.status'])
-            ->where('status', '=', 'Menunggu Verifikasi')
-            ->take(5);
 
         return view('admin.dashboard', compact('mahasiswa', 'prestasi', 'dataPrs', 'project', 'dataPrj', 'jurnal', 'dataJrnl', 'kegiatan', 'dataKgt'));
     }
