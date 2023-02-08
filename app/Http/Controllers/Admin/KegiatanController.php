@@ -24,7 +24,9 @@ class KegiatanController extends Controller
             $prodi = strtolower($authAdmin->prodi);
             $kegiatan = Kegiatan::join('mahasiswa', 'mahasiswa.id', '=', 'kegiatans.mahasiswa_id')
                 ->where('status', '=', 'Menunggu Verifikasi')
-                ->whereRaw('LOWER(`prodi`) LIKE ? ','%'.strtolower($prodi).'%')->get();
+                ->whereRaw('LOWER(`prodi`) LIKE ? ','%'.strtolower($prodi).'%')
+                ->select('*', 'kegiatans.image AS image')
+                ->get();
         } else {
             $kegiatan = Kegiatan::with('Mahasiswa')->where('status', '=', 'Menunggu Verifikasi')->get();
         }

@@ -24,7 +24,8 @@ class JurnalController extends Controller
             $prodi = strtolower($authAdmin->prodi);
             $jurnal = Jurnal::join('mahasiswa', 'mahasiswa.id', '=', 'jurnals.mahasiswa_id')
                 ->where('status', '=', 'Menunggu Verifikasi')
-                ->whereRaw('LOWER(`prodi`) LIKE ? ','%'.strtolower($prodi).'%')->get();
+                ->whereRaw('LOWER(`prodi`) LIKE ? ','%'.strtolower($prodi).'%')
+                ->get();
         } else {
             $jurnal = Jurnal::with('Mahasiswa')->where('status', '=', 'Menunggu Verifikasi')->get();
         }

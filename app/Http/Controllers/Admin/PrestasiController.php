@@ -26,7 +26,9 @@ class PrestasiController extends Controller
             $prodi = strtolower($authAdmin->prodi);
             $prestasi = Prestasi::join('mahasiswa', 'mahasiswa.id', '=', 'prestasis.mahasiswa_id')
                 ->where('status', '=', 'Menunggu Verifikasi')
-                ->whereRaw('LOWER(`prodi`) LIKE ? ','%'.strtolower($prodi).'%')->get();
+                ->whereRaw('LOWER(`prodi`) LIKE ? ','%'.strtolower($prodi).'%')
+                ->select('*', 'prestasis.image AS image')
+                ->get();
         } else {
             $prestasi = Prestasi::with('Mahasiswa')->where('status', '=', 'Menunggu Verifikasi')->get();
         }
