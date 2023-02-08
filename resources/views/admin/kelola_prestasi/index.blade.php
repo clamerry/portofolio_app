@@ -69,7 +69,7 @@
                                                 @foreach ($prestasi as $prs)
                                                     <tr>
                                                         <td style="vertical-align: middle">{{ $loop->iteration }}</td>
-                                                        <td style="vertical-align: middle">{{ $prs->nama }}</td>
+                                                        <td style="vertical-align: middle">{{ $prs->Mahasiswa->nama}}</td>
                                                         <td style="vertical-align: middle">{{ $prs->judul }}</td>
                                                         <td style="vertical-align: middle">{{ $prs->penyelenggara }}</td>
                                                         <td style="vertical-align: middle"><button type="button"
