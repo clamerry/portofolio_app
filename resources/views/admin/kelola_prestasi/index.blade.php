@@ -75,30 +75,30 @@
                                                         <td style="vertical-align: middle"><button type="button"
                                                                 class="btn btn-outline-primary" style=""
                                                                 data-toggle="modal"
-                                                                data-target="#sertifikat{{ $prs->id_prestasi }}">
+                                                                data-target="#sertifikat{{ $prs->id }}">
                                                                 Lihat
                                                             </button></td>
 
                                                         <td style="vertical-align: middle">
                                                             <button type="button" class="border-0"
                                                                 style="background: transparent; vertical-align: middle; margin-right: -5px;"
-                                                                onclick="acceptConfirmation('{{ $prs->id_prestasi }}')">
+                                                                onclick="acceptConfirmation('{{ $prs->id }}')">
                                                                 <i class="far fa-check-circle fa-lg"
                                                                     style="color: #1c8c53"></i>
                                                             </button>
                                                             <button type="button" class="border-0"
                                                                 style="background: transparent; vertical-align: middle; margin-right: 5px;"
-                                                                onclick="rejectConfirmation('{{ $prs->id_prestasi }}')">
+                                                                onclick="rejectConfirmation('{{ $prs->id }}')">
                                                                 <i class="far fa-times-circle fa-lg"
                                                                     style="color: #E11400"></i>
                                                             </button>
                                                             <a style="background:transparent; text-decoration: none; vertical-align: middle;margin-right: 5px;"
-                                                                href="{{ route('admin.edit.prestasi', $prs->id_prestasi) }}">
+                                                                href="{{ route('admin.edit.prestasi', $prs->id) }}">
                                                                 <i class="nav-icon fas fa-edit fa-lg"
                                                                     style="color: #2a7aa9"></i></a>
                                                             <a style="background:transparent; text-decoration: none; vertical-align: middle"
                                                                 href="#"
-                                                                onclick="deleteConfirmation('{{ $prs->id_prestasi }}')">
+                                                                onclick="deleteConfirmation('{{ $prs->id }}')">
                                                                 <i class="nav-icon far fa-trash-alt fa-lg"
                                                                     style="color: #E11400"></i></a>
 
@@ -115,7 +115,7 @@
 
                     @foreach ($prestasi as $prs)
                         <!-- Modal View Image -->
-                        <div class="modal fade" id="sertifikat{{ $prs->id_prestasi }}">
+                        <div class="modal fade" id="sertifikat{{ $prs->id }}">
                             <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
                                 <div class="modal-content">
                                     <div class="modal-header">

@@ -10,6 +10,7 @@ use App\Models\Mahasiswa;
 use App\Http\Controllers\Controller;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardAdminController extends Controller
 {
@@ -21,7 +22,13 @@ class DashboardAdminController extends Controller
     public function index()
     {
         //mahasiswa aktif
-        $mahasiswa = Mahasiswa::all()->count();
+        $authAdmin = Auth::guard('admin')->user();
+        if ($authAdmin->role == 'admin') {
+            $prodi = strtolower($authAdmin->prodi);
+            $mahasiswa = Mahasiswa::whereRaw('LOWER(`prodi`) LIKE ? ','%'.strtolower($prodi).'%')->count();
+        } else {
+            $mahasiswa = Mahasiswa::count();
+        }
 
         //prestasi (v)
         $prestasi = [
