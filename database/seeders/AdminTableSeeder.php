@@ -28,6 +28,13 @@ class AdminTableSeeder extends Seeder
                 'password' => bcrypt('adminbaru'),
                 'role' => 'admin',
                 'prodi' => 'S1-Teknik Komputer',
+            ],
+            [
+                'nama'  => 'Admin1', 
+                'email' => 'admin1@admin.com',
+                'password' => bcrypt('adminbaru1'),
+                'role' => 'admin',
+                'prodi' => 'S1-Teknik Perkapalan',
             ]
         ];
 
