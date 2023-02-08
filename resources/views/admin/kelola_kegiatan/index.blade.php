@@ -68,7 +68,7 @@
                                                 @foreach ($kegiatan as $kgt)
                                                     <tr>
                                                         <td style="vertical-align: middle">{{ $loop->iteration }}</td>
-                                                        <td style="vertical-align: middle">{{ $kgt->nama }}</td>
+                                                        <td style="vertical-align: middle">{{ $kgt->Mahasiswa->nama }}</td>
                                                         <td style="vertical-align: middle">{{ $kgt->jabatan }}</td>
                                                         <td style="vertical-align: middle">{{ $kgt->kegiatan }}</td>
                                                         <td style="vertical-align: middle">{{ $kgt->periode }}</td>
@@ -81,23 +81,23 @@
                                                         <td style="vertical-align: middle">
                                                             <button type="button" class="border-0"
                                                                 style="background: transparent; vertical-align: middle; margin-right: -5px;"
-                                                                onclick="acceptConfirmation('{{ $kgt->id_kegiatan }}')">
+                                                                onclick="acceptConfirmation('{{ $kgt->id }}')">
                                                                 <i class="far fa-check-circle fa-lg"
                                                                     style="color: #1c8c53"></i>
                                                             </button>
                                                             <button type="button" class="border-0"
                                                                 style="background: transparent; vertical-align: middle; margin-right: 5px;"
-                                                                onclick="rejectConfirmation('{{ $kgt->id_kegiatan }}')">
+                                                                onclick="rejectConfirmation('{{ $kgt->id }}')">
                                                                 <i class="far fa-times-circle fa-lg"
                                                                     style="color: #E11400"></i>
                                                             </button>
                                                             <a style="background:transparent; text-decoration: none; vertical-align: middle;margin-right: 5px;"
-                                                                href="{{ route('admin.edit.kegiatan', $kgt->id_kegiatan) }}">
+                                                                href="{{ route('admin.edit.kegiatan', $kgt->id) }}">
                                                                 <i class="nav-icon fas fa-edit fa-lg"
                                                                     style="color: #2a7aa9"></i></a>
                                                             <a style="background:transparent; text-decoration: none; vertical-align: middle"
                                                                 href="#"
-                                                                onclick="deleteConfirmation('{{ $kgt->id_kegiatan }}')">
+                                                                onclick="deleteConfirmation('{{ $kgt->id }}')">
                                                                 <i class="nav-icon far fa-trash-alt fa-lg"
                                                                     style="color: #E11400"></i></a>
 

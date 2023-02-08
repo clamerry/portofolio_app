@@ -69,7 +69,7 @@
                                                 @foreach ($jurnal as $jrnl)
                                                     <tr>
                                                         <td style="vertical-align: middle">{{ $loop->iteration }}</td>
-                                                        <td style="vertical-align: middle">{{ $jrnl->nama }}</td>
+                                                        <td style="vertical-align: middle">{{ $jrnl->Mahasiswa->nama }}</td>
                                                         <td style="vertical-align: middle">{{ $jrnl->judul }}</td>
                                                         <td style="vertical-align: middle">{{ $jrnl->penulis }}</td>
                                                         <td style="vertical-align: middle">{{ $jrnl->jurnal }}</td>
@@ -82,23 +82,23 @@
                                                         <td style="vertical-align: middle">
                                                             <button type="button" class="border-0"
                                                                 style="background: transparent; vertical-align: middle; margin-right: -5px;"
-                                                                onclick="acceptConfirmation('{{ $jrnl->id_jurnal }}')">
+                                                                onclick="acceptConfirmation('{{ $jrnl->id }}')">
                                                                 <i class="far fa-check-circle fa-lg"
                                                                     style="color: #1c8c53"></i>
                                                             </button>
                                                             <button type="button" class="border-0"
                                                                 style="background: transparent; vertical-align: middle; margin-right: 5px;"
-                                                                onclick="rejectConfirmation('{{ $jrnl->id_jurnal }}')">
+                                                                onclick="rejectConfirmation('{{ $jrnl->id }}')">
                                                                 <i class="far fa-times-circle fa-lg"
                                                                     style="color: #E11400"></i>
                                                             </button>
                                                             <a style="background:transparent; text-decoration: none; vertical-align: middle;margin-right: 5px;"
-                                                                href="{{ route('admin.edit.jurnal', $jrnl->id_jurnal) }}">
+                                                                href="{{ route('admin.edit.jurnal', $jrnl->id) }}">
                                                                 <i class="nav-icon fas fa-edit fa-lg"
                                                                     style="color: #2a7aa9"></i></a>
                                                             <a style="background:transparent; text-decoration: none; vertical-align: middle"
                                                                 href="#"
-                                                                onclick="deleteConfirmation('{{ $jrnl->id_jurnal }}')">
+                                                                onclick="deleteConfirmation('{{ $jrnl->id }}')">
                                                                 <i class="nav-icon far fa-trash-alt fa-lg"
                                                                     style="color: #E11400"></i></a>
 

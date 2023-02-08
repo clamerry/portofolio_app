@@ -7,6 +7,7 @@ use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 class KegiatanController extends Controller
@@ -18,11 +19,17 @@ class KegiatanController extends Controller
      */
     public function indexKegiatan()
     {
-        $kegiatan = Kegiatan::join('mahasiswa', 'kegiatans.mahasiswa_id', '=', 'mahasiswa.id')
-            ->get(['mahasiswa.nama', 'kegiatans.id as id_kegiatan', 'kegiatans.jabatan', 'kegiatans.kegiatan', 'kegiatans.periode', 'kegiatans.image', 'kegiatans.status'])
-            ->where('status', '=', 'Menunggu Verifikasi');
+        $authAdmin = Auth::guard('admin')->user();
+        if ($authAdmin->role == 'admin') {
+            $prodi = strtolower($authAdmin->prodi);
+            $kegiatan = Kegiatan::join('mahasiswa', 'mahasiswa.id', '=', 'projects.mahasiswa_id')
+                ->where('status', '=', 'Menunggu Verifikasi')
+                ->whereRaw('LOWER(`prodi`) LIKE ? ','%'.strtolower($prodi).'%')->get();
+        } else {
+            $jurnal = Kegiatan::with('Mahasiswa')->where('status', '=', 'Menunggu Verifikasi')->get();
+        }
 
-        return view('admin.kelola_kegiatan.index', compact('kegiatan',));
+        return view('admin.kelola_kegiatan.index', compact('kegiatan'));
     }
 
     /**
@@ -34,7 +41,13 @@ class KegiatanController extends Controller
     {
         if($request->ajax()) { // kondisi kalau request ajax
             $name = $request->name;
-            $mahasiswa = Mahasiswa::where('nama', 'LIKE','%'.$name.'%')->get();
+            $authAdmin = Auth::guard('admin')->user();
+            if ($authAdmin->role == 'admin') {
+                $prodi = strtolower($authAdmin->prodi);
+                $mahasiswa = Mahasiswa::whereRaw('LOWER(`prodi`) LIKE ? ','%'.strtolower($prodi).'%')->where('nama', 'LIKE','%'.$name.'%')->get();
+            } else {
+                $mahasiswa = Mahasiswa::where('nama', 'LIKE','%'.$name.'%')->get();
+            }
 
             // select * from 'mahasiswa' WHERE name LIKE '%$name%';
             $formatted_tags = [];
