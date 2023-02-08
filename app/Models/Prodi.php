@@ -16,7 +16,7 @@ class Prodi extends Model
 
   protected $fillable = ['id_fakultas', 'nama'];
 
-  public function Fakultas()
+  public function getFakultas()
   {
     return $this->belongsTo(Fakultas::class, 'id_fakultas');
   }

@@ -19,11 +19,15 @@ class AdminTableSeeder extends Seeder
                 'nama'  => 'SuperAdmin', 
                 'email' => 'superadmin@admin.com',
                 'password' => bcrypt('superadmin'),
+                'role' => 'superadmin',
+                'prodi' => null,
             ],
             [
                 'nama'  => 'Admin', 
                 'email' => 'admin@admin.com',
                 'password' => bcrypt('adminbaru'),
+                'role' => 'admin',
+                'prodi' => 'S1-Teknik Komputer',
             ]
         ];
 
@@ -33,7 +37,9 @@ class AdminTableSeeder extends Seeder
                 Admin::create([
                     'nama'      => $item['nama'],
                     'email'     => $item['email'],
-                    'password'  => $item['password']
+                    'password'  => $item['password'],
+                    'role' => $item['role'],
+                    'prodi' => $item['prodi'],
                 ]);
             }
         }

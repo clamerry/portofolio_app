@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\File;
 use App\Http\Controllers\Controller;
 use App\Models\Fakultas;
 use App\Models\Prodi;
+use Illuminate\Support\Facades\Auth;
 
 class MahasiswaController extends Controller
 {
@@ -23,7 +24,13 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        $mahasiswa = Mahasiswa::all();
+        $authAdmin = Auth::guard('admin')->user();
+        if ($authAdmin->role == 'admin') {
+            $prodi = strtolower($authAdmin->prodi);
+            $mahasiswa = Mahasiswa::whereRaw('LOWER(`prodi`) LIKE ? ','%'.strtolower($prodi).'%')->get();
+        } else {
+            $mahasiswa = Mahasiswa::all();
+        }
         return view('admin.kelola_mhs.index', compact('mahasiswa'));
     }
 
@@ -60,12 +67,20 @@ class MahasiswaController extends Controller
             'email' => 'required',
             'password' => 'required',
             'nim' => 'required',
-            'fakultas' => 'required',
-            'prodi' => 'required',
         ]);
 
-        $fakultas = Fakultas::whereid($request->fakultas)->first();
-        $prodi = Prodi::whereid($request->prodi)->first();
+        $authAdmin = Auth::guard('admin')->user();
+        if ($authAdmin->role == 'admin') {
+            $prodi = Prodi::whereRaw('LOWER(`nama`) LIKE ? ','%'.strtolower($authAdmin->prodi).'%')->first();
+            $fakultas = $prodi->getFakultas;
+        } else {
+            $request->validate([
+                'fakultas' => 'required',
+                'prodi' => 'required',
+            ]);
+            $fakultas = Fakultas::whereid($request->fakultas)->first();
+            $prodi = Prodi::whereid($request->prodi)->first();
+        }
 
         $mhsData = [
             'nama' => $request->nama,
@@ -151,15 +166,23 @@ class MahasiswaController extends Controller
             'email' => 'required',
             // 'password' => 'required',
             'nim' => 'required',
-            'fakultas' => 'required',
-            'prodi' => 'required',
         ]);
 
         // $file = $request->file('image');
         // $fileName = time() . '.' . $file->getClientOriginalExtension();
         // $file->storeAs('public/images', $fileName);
-        $fakultas = Fakultas::whereid($request->fakultas)->first();
-        $prodi = Prodi::whereid($request->prodi)->first();
+        $authAdmin = Auth::guard('admin')->user();
+        if ($authAdmin->role == 'admin') {
+            $prodi = Prodi::whereRaw('LOWER(`nama`) LIKE ? ','%'.strtolower($authAdmin->prodi).'%')->first();
+            $fakultas = $prodi->getFakultas;
+        } else {
+            $request->validate([
+                'fakultas' => 'required',
+                'prodi' => 'required',
+            ]);
+            $fakultas = Fakultas::whereid($request->fakultas)->first();
+            $prodi = Prodi::whereid($request->prodi)->first();
+        }
 
         $mhsData = [
             'nama' => $request->nama,

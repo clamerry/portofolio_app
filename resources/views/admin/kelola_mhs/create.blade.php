@@ -65,40 +65,42 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div class="name">Fakultas</div>
-                            <div class="value">
-                                <div class="input-group">
-                                    <select name="fakultas" id="fakultas" class="input--style-6" onchange="findProdi(this)">
-                                        <option value="" disabled selected>--Pilih Fakultas--</option>
-                                        @foreach ($fakultas as $fk)
-                                            <option value="{{ $fk->id }}">{{ $fk->nama }}</option>
-                                        @endforeach
-                                    </select>
-                                    {{-- this membawa semua elemen pada bagian select --}}
-                                    {{-- <input type="text" name="fakultas" class="input--style-6" placeholder="Fakultas"
-                                        required></textarea> --}}
-                                    @error('fakultas')
-                                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                                    @enderror
+                        @if (auth()->user()->role != 'admin')
+                            <div class="form-row">
+                                <div class="name">Fakultas</div>
+                                <div class="value">
+                                    <div class="input-group">
+                                        <select name="fakultas" id="fakultas" class="input--style-6" onchange="findProdi(this)">
+                                            <option value="" disabled selected>--Pilih Fakultas--</option>
+                                            @foreach ($fakultas as $fk)
+                                                <option value="{{ $fk->id }}">{{ $fk->nama }}</option>
+                                            @endforeach
+                                        </select>
+                                        {{-- this membawa semua elemen pada bagian select --}}
+                                        {{-- <input type="text" name="fakultas" class="input--style-6" placeholder="Fakultas"
+                                            required></textarea> --}}
+                                        @error('fakultas')
+                                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="name">Program Studi</div>
-                            <div class="value">
-                                <div class="input-group">
-                                    <select name="prodi" id="prodi" class="input--style-6">
-                                        <option value="">--Pilih Program Studi--</option>
-                                    </select>
-                                    {{-- <input type="text" name="prodi" class="input--style-6" placeholder="Program Studi"
-                                        required></textarea> --}}
-                                    @error('prodi')
-                                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                                    @enderror
+                            <div class="form-row">
+                                <div class="name">Program Studi</div>
+                                <div class="value">
+                                    <div class="input-group">
+                                        <select name="prodi" id="prodi" class="input--style-6">
+                                            <option value="">--Pilih Program Studi--</option>
+                                        </select>
+                                        {{-- <input type="text" name="prodi" class="input--style-6" placeholder="Program Studi"
+                                            required></textarea> --}}
+                                        @error('prodi')
+                                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @endif
                         <div class="card-footer">
                             <button type="submit" class="btn btn--radius-2 btn--blue-2">Simpan</button>
                         </div>

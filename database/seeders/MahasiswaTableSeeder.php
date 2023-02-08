@@ -22,7 +22,7 @@ class MahasiswaTableSeeder extends Seeder
                 'email' => 'mahasiswa1@guest.com',
                 'password'=> bcrypt('mahasiswa1'),
                 'fakultas' => 'Fakultas Teknik',
-                'prodi' => 'Teknik Komputer',
+                'prodi' => 'S1-Teknik Komputer',
             ],
             [
                 'nama'  => 'mahasiswa2',
@@ -30,7 +30,7 @@ class MahasiswaTableSeeder extends Seeder
                 'email' => 'mahasiswa2@guest.com',
                 'password'=> bcrypt('mahasiswa2'),
                 'fakultas' => 'Fakultas Teknik',
-                'prodi' => 'Teknik Komputer',
+                'prodi' => 'S1-Teknik Komputer',
             ]
         ];
 
