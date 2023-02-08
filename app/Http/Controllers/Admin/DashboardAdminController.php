@@ -30,25 +30,33 @@ class DashboardAdminController extends Controller
 
             // prestasi
             $prestasi = [
-                'verifikasi' => Prestasi::where('status', 'Telah diverifikasi')->whereRaw('LOWER(`prodi`) LIKE ? ','%'.strtolower($prodi).'%')->get()->count(),
+                'verifikasi' => $prestasi = Prestasi::join('mahasiswa', 'mahasiswa.id', '=', 'prestasis.mahasiswa_id')
+                ->where('status', '=', 'Telah diverifikasi')
+                ->whereRaw('LOWER(`prodi`) LIKE ? ','%'.strtolower($prodi).'%')->count(),
                 'total' => Prestasi::all()->count()
             ];
             
             //project (v)
             $project = [
-                'verifikasi' => Project::where('status', 'Telah diverifikasi')->whereRaw('LOWER(`prodi`) LIKE ? ','%'.strtolower($prodi).'%')->get()->count(),
+                'verifikasi' => $project = Project::join('mahasiswa', 'mahasiswa.id', '=', 'projects.mahasiswa_id')
+                ->where('status', '=', 'Telah diverifikasi')
+                ->whereRaw('LOWER(`prodi`) LIKE ? ','%'.strtolower($prodi).'%')->count(),
                 'total' => Project::all()->count()
             ];
 
             //jurnal (v)
             $jurnal = [
-                'verifikasi' => Jurnal::where('status', 'Telah diverifikasi')->whereRaw('LOWER(`prodi`) LIKE ? ','%'.strtolower($prodi).'%')->get()->count(),
+                'verifikasi' => $jurnal = Jurnal::join('mahasiswa', 'mahasiswa.id', '=', 'jurnals.mahasiswa_id')
+                ->where('status', '=', 'Telah diverifikasi')
+                ->whereRaw('LOWER(`prodi`) LIKE ? ','%'.strtolower($prodi).'%')->count(),
                 'total' => Jurnal::all()->count()
             ];
 
             //kegiatan (v)
             $kegiatan = [
-                'verifikasi' => Kegiatan::where('status', 'Telah diverifikasi')->whereRaw('LOWER(`prodi`) LIKE ? ','%'.strtolower($prodi).'%')->get()->count(),
+                'verifikasi' => $kegiatan = Kegiatan::join('mahasiswa', 'mahasiswa.id', '=', 'kegiatans.mahasiswa_id')
+                ->where('status', '=', 'Telah diverifikasi')
+                ->whereRaw('LOWER(`prodi`) LIKE ? ','%'.strtolower($prodi).'%')->count(),
                 'total' => Kegiatan::all()->count()
             ];
 
