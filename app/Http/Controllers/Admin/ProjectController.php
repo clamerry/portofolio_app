@@ -7,6 +7,7 @@ use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 class ProjectController extends Controller
@@ -18,11 +19,17 @@ class ProjectController extends Controller
      */
     public function indexProject()
     {
-        $project = Project::join('mahasiswa', 'projects.mahasiswa_id', '=', 'mahasiswa.id')
-            ->get(['mahasiswa.nama', 'projects.id as id_project', 'projects.judul', 'projects.deskripsi', 'projects.image', 'projects.status'])
-            ->where('status', '=', 'Menunggu Verifikasi');
+        $authAdmin = Auth::guard('admin')->user();
+        if ($authAdmin->role == 'admin') {
+            $prodi = strtolower($authAdmin->prodi);
+            $project = Project::join('mahasiswa', 'mahasiswa.id', '=', 'projects.mahasiswa_id')
+                ->where('status', '=', 'Menunggu Verifikasi')
+                ->whereRaw('LOWER(`prodi`) LIKE ? ','%'.strtolower($prodi).'%')->get();
+        } else {
+            $project = Project::with('Mahasiswa')->where('status', '=', 'Menunggu Verifikasi')->get();
+        }
 
-        return view('admin.kelola_project.index', compact('project',));
+        return view('admin.kelola_project.index', compact('project'));
     }
 
     /**
@@ -34,7 +41,13 @@ class ProjectController extends Controller
     {
         if($request->ajax()) { // kondisi kalau request ajax
             $name = $request->name;
-            $mahasiswa = Mahasiswa::where('nama', 'LIKE','%'.$name.'%')->get();
+            $authAdmin = Auth::guard('admin')->user();
+            if ($authAdmin->role == 'admin') {
+                $prodi = strtolower($authAdmin->prodi);
+                $mahasiswa = Mahasiswa::whereRaw('LOWER(`prodi`) LIKE ? ','%'.strtolower($prodi).'%')->where('nama', 'LIKE','%'.$name.'%')->get();
+            } else {
+                $mahasiswa = Mahasiswa::where('nama', 'LIKE','%'.$name.'%')->get();
+            }
 
             // select * from 'mahasiswa' WHERE name LIKE '%$name%';
             $formatted_tags = [];

@@ -68,37 +68,37 @@
                                             @foreach ($project as $prj)
                                                 <tr>
                                                     <td style="vertical-align: middle">{{ $loop->iteration }}</td>
-                                                    <td style="vertical-align: middle">{{ $prj->nama }}</td>
+                                                    <td style="vertical-align: middle">{{ $prj->Mahasiswa->nama }}</td>
                                                     <td style="vertical-align: middle">{{ $prj->judul }}</td>
                                                     <td style="vertical-align: middle"><button type="button"
                                                             class="btn btn-outline-primary" data-toggle="modal"
-                                                            data-target="#view_deskripsi{{ $prj->id_project }}">
+                                                            data-target="#view_deskripsi{{ $prj->id }}">
                                                             Lihat
                                                         </button></td>
                                                     <td style="vertical-align: middle"><button type="button"
                                                             class="btn btn-outline-primary" style=""
-                                                            data-toggle="modal" data-target="#foto{{ $prj->id_project }}">
+                                                            data-toggle="modal" data-target="#foto{{ $prj->id }}">
                                                             Lihat
                                                         </button></td>
 
                                                     <td style="vertical-align: middle">
                                                         <button type="button" class="border-0"
                                                             style="background: transparent; vertical-align: middle; margin-right: -5px;"
-                                                            onclick="acceptConfirmation('{{ $prj->id_project }}')">
+                                                            onclick="acceptConfirmation('{{ $prj->id }}')">
                                                             <i class="far fa-check-circle fa-lg" style="color: #1c8c53"></i>
                                                         </button>
                                                         <button type="button" class="border-0"
                                                             style="background: transparent; vertical-align: middle; margin-right: 5px;"
-                                                            onclick="rejectConfirmation('{{ $prj->id_project }}')">
+                                                            onclick="rejectConfirmation('{{ $prj->id }}')">
                                                             <i class="far fa-times-circle fa-lg" style="color: #E11400"></i>
                                                         </button>
                                                         <a style="background:transparent; text-decoration: none; vertical-align: middle;margin-right: 5px;"
-                                                            href="{{ route('admin.edit.project', $prj->id_project) }}">
+                                                            href="{{ route('admin.edit.project', $prj->id) }}">
                                                             <i class="nav-icon fas fa-edit fa-lg"
                                                                 style="color: #2a7aa9"></i></a>
                                                         <a style="background:transparent; text-decoration: none; vertical-align: middle"
                                                             href="#"
-                                                            onclick="deleteConfirmation('{{ $prj->id_project }}')">
+                                                            onclick="deleteConfirmation('{{ $prj->id }}')">
                                                             <i class="nav-icon far fa-trash-alt fa-lg"
                                                                 style="color: #E11400"></i></a>
 
@@ -115,7 +115,7 @@
 
             @foreach ($project as $prj)
                 <!-- Modal View Deskripsi -->
-                <div class="modal fade" id="view_deskripsi{{ $prj->id_project }}">
+                <div class="modal fade" id="view_deskripsi{{ $prj->id }}">
                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -137,7 +137,7 @@
                 </div>
                 <!-- /.modal -->
                 <!-- Modal View Image -->
-                <div class="modal fade" id="foto{{ $prj->id_project }}">
+                <div class="modal fade" id="foto{{ $prj->id }}">
                     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
                         <div class="modal-content">
                             <div class="modal-header">
