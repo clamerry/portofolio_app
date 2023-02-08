@@ -25,7 +25,7 @@ class ProjectController extends Controller
             $project = Project::join('mahasiswa', 'mahasiswa.id', '=', 'projects.mahasiswa_id')
                 ->where('status', '=', 'Menunggu Verifikasi')
                 ->whereRaw('LOWER(`prodi`) LIKE ? ','%'.strtolower($prodi).'%')
-                ->select('*', 'projects.image AS image')
+                ->select('*', 'projects.image AS image', 'projects.id AS id')
                 ->get();
         } else {
             $project = Project::with('Mahasiswa')->where('status', '=', 'Menunggu Verifikasi')->get();

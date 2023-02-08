@@ -108,7 +108,7 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') //syarat autentikasi
                 },
-                url: "{{ route('admin.create.prestasi') }}", //url aplikasi
+                url: "{{ route('admin.create.kegiatan') }}", //url aplikasi
                 type: "GET",
                 dataType: 'json',
                 data: function(params) {
