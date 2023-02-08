@@ -22,7 +22,7 @@ class KegiatanController extends Controller
         $authAdmin = Auth::guard('admin')->user();
         if ($authAdmin->role == 'admin') {
             $prodi = strtolower($authAdmin->prodi);
-            $kegiatan = Kegiatan::join('mahasiswa', 'mahasiswa.id', '=', 'projects.mahasiswa_id')
+            $kegiatan = Kegiatan::join('mahasiswa', 'mahasiswa.id', '=', 'kegiatans.mahasiswa_id')
                 ->where('status', '=', 'Menunggu Verifikasi')
                 ->whereRaw('LOWER(`prodi`) LIKE ? ','%'.strtolower($prodi).'%')->get();
         } else {

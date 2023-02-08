@@ -22,7 +22,7 @@ class JurnalController extends Controller
         $authAdmin = Auth::guard('admin')->user();
         if ($authAdmin->role == 'admin') {
             $prodi = strtolower($authAdmin->prodi);
-            $jurnal = Jurnal::join('mahasiswa', 'mahasiswa.id', '=', 'projects.mahasiswa_id')
+            $jurnal = Jurnal::join('mahasiswa', 'mahasiswa.id', '=', 'jurnals.mahasiswa_id')
                 ->where('status', '=', 'Menunggu Verifikasi')
                 ->whereRaw('LOWER(`prodi`) LIKE ? ','%'.strtolower($prodi).'%')->get();
         } else {
