@@ -150,7 +150,7 @@
     @section('inlinejs')
         <script>
             $(document).ready(function() {
-                $('#verif_kegiatan').DataTable();
+                $('#kegiatan').DataTable();
             });
 
             function acceptConfirmation(id) {
