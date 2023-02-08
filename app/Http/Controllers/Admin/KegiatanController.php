@@ -26,7 +26,7 @@ class KegiatanController extends Controller
                 ->where('status', '=', 'Menunggu Verifikasi')
                 ->whereRaw('LOWER(`prodi`) LIKE ? ','%'.strtolower($prodi).'%')->get();
         } else {
-            $jurnal = Kegiatan::with('Mahasiswa')->where('status', '=', 'Menunggu Verifikasi')->get();
+            $kegiatan = Kegiatan::with('Mahasiswa')->where('status', '=', 'Menunggu Verifikasi')->get();
         }
 
         return view('admin.kelola_kegiatan.index', compact('kegiatan'));
